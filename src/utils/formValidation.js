@@ -15,19 +15,19 @@ export const developerValidation = Yup.object().shape({
   }),
 
   // not used right now
-  generalInformation: Yup.object().shape({
-    firstName: Yup.string().required('Required'),
-    lastName: Yup.string().required('Required'),
-    headline: Yup.string()
-      .min(10, 'minimum character must 10')
-      .required('Required'),
-  }),
-  contactInfo: Yup.object().shape({
-    email: Yup.string().email('Invalid Email').required('Required'),
-    address: Yup.string()
-      .min(10, 'minimum character must 10')
-      .required('Required'),
-  }),
+  // generalInformation: Yup.object().shape({
+  //   firstName: Yup.string().required('Required'),
+  //   lastName: Yup.string().required('Required'),
+  //   headline: Yup.string()
+  //     .min(10, 'minimum character must 10')
+  //     .required('Required'),
+  // }),
+  // contactInfo: Yup.object().shape({
+  //   email: Yup.string().email('Invalid Email').required('Required'),
+  //   address: Yup.string()
+  //     .min(10, 'minimum character must 10')
+  //     .required('Required'),
+  // }),
   experience: Yup.array().of(
     Yup.object().shape({
       companyName: Yup.string().required('Required'),
@@ -60,6 +60,29 @@ export const developerValidation = Yup.object().shape({
   courses: Yup.object().shape({
     name: Yup.string().required('Required'),
   }),
+
+  socialProof: Yup.array().of(
+    Yup.object().shape({
+      linkedIn: Yup.string()
+        .matches(
+          /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+          'Invalid URL'
+        )
+        .required('Required'),
+      twitter: Yup.string().matches(
+        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        'Invalid URL'
+      ),
+      instagram: Yup.string().matches(
+        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        'Invalid URL'
+      ),
+      facebook: Yup.string().matches(
+        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        'Invalid URL'
+      ),
+    })
+  ),
 });
 
 // Vendor Validation

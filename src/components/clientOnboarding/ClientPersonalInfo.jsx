@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardContent from '@mui/material/CardContent';
 
 // ** React Imports
@@ -7,30 +7,29 @@ import { Country, State, City } from 'country-state-city';
 
 // ** MUI Imports
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+// import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import CardHeader from '@mui/material/CardHeader';
+import Select from '@mui/material/Select';
+// import CardHeader from '@mui/material/CardHeader';
 import InputLabel from '@mui/material/InputLabel';
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
+// import OutlinedInput from '@mui/material/OutlinedInput';
+// import InputAdornment from '@mui/material/InputAdornment';
+// import FormHelperText from '@mui/material/FormHelperText';
 import { styled } from '@mui/material/styles';
 
 // ** Icons Imports
-import EyeOutline from 'mdi-material-ui/EyeOutline';
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
-import { border, shadows } from '@mui/system';
+// import EyeOutline from 'mdi-material-ui/EyeOutline';
+// import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
+// import { border, shadows } from '@mui/system';
 import { Checkbox, MenuItem } from '@mui/material';
-import { ErrorMessage, Form, Formik, useFormik } from 'formik';
+import { Form, Formik } from 'formik';
 import { developerValidation } from '../../utils/formValidation';
-import { useEffect } from 'react';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -65,19 +64,13 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-export default function PersonalInfo() {
-  const [openAlert, setOpenAlert] = useState(true);
+export default function ClientPersonalInfo() {
+  // const [openAlert, setOpenAlert] = useState(true);
   const [imgSrc, setImgSrc] = useState('/images/avatars/1.png');
   const [country, setCountry] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState('');
+
   const [state, setState] = useState([]);
-
-  // const headers = new Headers()
-
-  // var requestOptions = {
-  //   method: 'GET',
-  //   headers: headers,
-  //   redirect: 'follow'
-  // }
 
   const onChange = (file) => {
     const reader = new FileReader();
@@ -95,12 +88,30 @@ export default function PersonalInfo() {
     ...country,
   }));
 
-  const updatedStates = (countryId) =>
-    State.getStatesOfCountry(countryId).map((state) => ({
-      label: state.name,
-      value: state.id,
-      ...state,
-    }));
+  // const updatedStates = (countryId) =>
+  //   State.getStatesOfCountry(countryId).map((state) => ({
+  //     label: state.name,
+  //     value: state.id,
+  //     ...state,
+  //   }));
+
+  const countryData = Country.getAllCountries().map((country) => ({
+    value: country.name,
+    displayValue: `${country.name} - ${country.isoCode}`,
+    isoCode: country.isoCode,
+  }));
+
+  const stateData = State.getStatesOfCountry('IN').map((state) => ({
+    value: state.name,
+    displayValue: `${state.name} - ${state.isoCode}`,
+  }));
+
+  useEffect(() => {
+    setCountry(countryData);
+  }, []);
+  console.log(country);
+
+  console.log(stateData);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
@@ -124,7 +135,7 @@ export default function PersonalInfo() {
   //   getCountry()
   // }, [])
 
-  console.log(country);
+  // console.log(country);
 
   return (
     <Formik
@@ -281,6 +292,7 @@ export default function PersonalInfo() {
                       id='personalInformation.country'
                       name='personalInformation.country'
                       label='Country'
+                      // value={selectedCountry}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -298,9 +310,9 @@ export default function PersonalInfo() {
                         errors.personalInformation.country
                       }
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Germany</MenuItem>
-                      <MenuItem value={30}>United State</MenuItem>
+                      {country.map((cont) => (
+                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid>

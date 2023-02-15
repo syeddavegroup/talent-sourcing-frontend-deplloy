@@ -69,20 +69,17 @@ export default function DeveloperSkills() {
                           name={`skills.skill[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          error={
-                            touched.experience &&
-                            touched.experience[index].companyName &&
-                            Boolean(
-                              errors.experience &&
-                                errors.experience[index].companyName
-                            )
-                          }
-                          helperText={
-                            touched.experience &&
-                            touched.experience[index].companyName &&
-                            errors.experience &&
-                            errors.experience[index].companyName
-                          }
+                          // error={
+                          //   touched.skills &&
+                          //   touched.skills[index].skill &&
+                          //   Boolean(errors.skills && errors.skills[index].skill)
+                          // }
+                          // helperText={
+                          //   touched.skills &&
+                          //   touched.skills[index].skill &&
+                          //   errors.skills &&
+                          //   errors.skills[index].skill
+                          // }
                         />
                       </div>
                     ))}
@@ -110,7 +107,7 @@ export default function DeveloperSkills() {
                         }}
                         onClick={() => push()}
                       >
-                        <AddIcon />{' '}
+                        <AddIcon />
                         <Typography color={'#03308C'}>Add</Typography>
                       </Box>
                     </Box>
@@ -124,20 +121,20 @@ export default function DeveloperSkills() {
                           name={`skills.language[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          error={
-                            touched.experience &&
-                            touched.experience[index].companyName &&
-                            Boolean(
-                              errors.experience &&
-                                errors.experience[index].companyName
-                            )
-                          }
-                          helperText={
-                            touched.experience &&
-                            touched.experience[index].companyName &&
-                            errors.experience &&
-                            errors.experience[index].companyName
-                          }
+                          // error={
+                          //   touched.experience &&
+                          //   touched.experience[index].companyName &&
+                          //   Boolean(
+                          //     errors.experience &&
+                          //       errors.experience[index].companyName
+                          //   )
+                          // }
+                          // helperText={
+                          //   touched.experience &&
+                          //   touched.experience[index].companyName &&
+                          //   errors.experience &&
+                          //   errors.experience[index].companyName
+                          // }
                         />
                       </div>
                     ))}

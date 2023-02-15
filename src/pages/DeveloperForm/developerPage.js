@@ -22,7 +22,7 @@ import { Form, Formik } from 'formik';
 
 import { developerValidation } from '../../utils/formValidation';
 
-import PersonalInfo from '../../components/developerOnboarding/PersonalInfo';
+import DeveloperPersonalInfo from '../../components/developerOnboarding/DeveloperPersonalInfo';
 import DeveloperExperience from '../../components/developerOnboarding/DeveloperExperience';
 import DeveloperSkills from '../../components/developerOnboarding/DeveloperSkills';
 import DeveloperBankDetails from '../../components/developerOnboarding/DeveloperBankDetails';
@@ -45,7 +45,7 @@ const TabName = styled('span')(({ theme }) => ({
   },
 }));
 
-export default function OnBoarding() {
+export default function DeveloperOnBoarding() {
   // ** State
   const [value, setValue] = useState('personalInformation');
 
@@ -96,7 +96,7 @@ export default function OnBoarding() {
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='personalInformation'>
-          <PersonalInfo />
+          <DeveloperPersonalInfo />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value='experience'>
           <DeveloperExperience />
