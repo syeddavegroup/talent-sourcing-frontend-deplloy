@@ -14,7 +14,7 @@ export default function ClientGallery() {
       initialValues={{
         gallery: [],
       }}
-      validationSchema={developerValidation}
+      // validationSchema={developerValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {

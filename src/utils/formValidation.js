@@ -1,7 +1,7 @@
 // Developer Validation
 import * as Yup from 'yup';
 
-export const developerValidation = Yup.object().shape({
+export const developerPersonalInformationValidation = Yup.object().shape({
   personalInformation: Yup.object().shape({
     fullName: Yup.string().required('Required'),
     email: Yup.string().email('Invalid Email').required('Required'),
@@ -13,21 +13,9 @@ export const developerValidation = Yup.object().shape({
     state: Yup.string().required('Required'),
     city: Yup.string().required('Required'),
   }),
+});
 
-  // not used right now
-  // generalInformation: Yup.object().shape({
-  //   firstName: Yup.string().required('Required'),
-  //   lastName: Yup.string().required('Required'),
-  //   headline: Yup.string()
-  //     .min(10, 'minimum character must 10')
-  //     .required('Required'),
-  // }),
-  // contactInfo: Yup.object().shape({
-  //   email: Yup.string().email('Invalid Email').required('Required'),
-  //   address: Yup.string()
-  //     .min(10, 'minimum character must 10')
-  //     .required('Required'),
-  // }),
+export const developerExperienceValidation = Yup.object().shape({
   experience: Yup.array().of(
     Yup.object().shape({
       companyName: Yup.string().required('Required'),
@@ -35,12 +23,6 @@ export const developerValidation = Yup.object().shape({
       dateOfJoining: Yup.string().required('Required'),
       workDescription: Yup.string().required('Required'),
       usedSkills: Yup.string().required('Required'),
-    })
-  ),
-  skills: Yup.array().of(
-    Yup.object().shape({
-      skillName: Yup.string().required('Required'),
-      yearOfExperience: Yup.string().required('Required'),
     })
   ),
   projects: Yup.array().of(
@@ -57,10 +39,18 @@ export const developerValidation = Yup.object().shape({
   licensesAndCertification: Yup.object().shape({
     name: Yup.string().required('Required'),
   }),
+});
+
+export const developerSkillValidation = Yup.object().shape({
+  skills: Yup.array().of(
+    Yup.object().shape({
+      skill: Yup.array().of(Yup.string().required('Required')),
+      language: Yup.array().of(Yup.string().required('Required')),
+    })
+  ),
   courses: Yup.object().shape({
     name: Yup.string().required('Required'),
   }),
-
   socialProof: Yup.array().of(
     Yup.object().shape({
       linkedIn: Yup.string()
@@ -85,7 +75,7 @@ export const developerValidation = Yup.object().shape({
   ),
 });
 
-// Vendor Validation
+// Client Validation
 export const clientPersonalValidation = Yup.object().shape({
   personalInformation: Yup.object().shape({
     fullName: Yup.string().required('Required'),

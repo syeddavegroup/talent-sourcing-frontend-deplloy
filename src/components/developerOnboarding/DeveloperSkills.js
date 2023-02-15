@@ -2,8 +2,9 @@ import React from 'react';
 import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
 import { Box, Card, TextField, Typography, Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CancelIcon from '../../assets/cancel-icon.svg';
 
-import { developerValidation } from '../../utils/formValidation';
+import { developerSkillValidation } from '../../utils/formValidation';
 
 export default function DeveloperSkills() {
   return (
@@ -22,7 +23,7 @@ export default function DeveloperSkills() {
           },
         ],
       }}
-      validationSchema={developerValidation}
+      validationSchema={developerSkillValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
@@ -60,28 +61,46 @@ export default function DeveloperSkills() {
                       </Box>
                     </Box>
                     {values.skills.skill.map((_, index) => (
-                      <div key={index}>
+                      <Box
+                        key={index}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
+                        }}
+                      >
                         <TextField
                           fullWidth
-                          sx={{ marginBottom: '1rem' }}
                           id='skills'
                           label='skill'
                           name={`skills.skill[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          // error={
-                          //   touched.skills &&
-                          //   touched.skills[index].skill &&
-                          //   Boolean(errors.skills && errors.skills[index].skill)
-                          // }
-                          // helperText={
-                          //   touched.skills &&
-                          //   touched.skills[index].skill &&
-                          //   errors.skills &&
-                          //   errors.skills[index].skill
-                          // }
+                          error={
+                            touched.skills &&
+                            touched.skills.skill &&
+                            Boolean(errors.skills && errors.skills[index].skill)
+                          }
+                          helperText={
+                            touched.skills &&
+                            touched.skills.skill &&
+                            errors.skills &&
+                            errors.skills.skill
+                          }
                         />
-                      </div>
+                        <Box
+                          sx={{ cursor: 'pointer' }}
+                          onClick={() => remove(index)}
+                        >
+                          <img
+                            src={CancelIcon}
+                            alt=''
+                            style={{ width: '20px' }}
+                          />
+                        </Box>
+                      </Box>
                     ))}
                   </Grid>
                 )}
@@ -112,10 +131,18 @@ export default function DeveloperSkills() {
                       </Box>
                     </Box>
                     {values.skills.language.map((_, index) => (
-                      <div key={index}>
+                      <Box
+                        key={index}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
+                        }}
+                      >
                         <TextField
                           fullWidth
-                          sx={{ marginBottom: '1rem' }}
                           id='skills'
                           label='Language'
                           name={`skills.language[${index}]`}
@@ -136,7 +163,17 @@ export default function DeveloperSkills() {
                           //   errors.experience[index].companyName
                           // }
                         />
-                      </div>
+                        <Box
+                          sx={{ cursor: 'pointer' }}
+                          onClick={() => remove(index)}
+                        >
+                          <img
+                            src={CancelIcon}
+                            alt=''
+                            style={{ width: '20px' }}
+                          />
+                        </Box>
+                      </Box>
                     ))}
                   </Grid>
                 )}
@@ -145,7 +182,7 @@ export default function DeveloperSkills() {
             <Box
               sx={{
                 width: '100%',
-                padding: '1rem',
+                padding: '1rem 0',
                 display: 'flex',
                 alignItems: 'flex-end',
                 gap: '1rem',

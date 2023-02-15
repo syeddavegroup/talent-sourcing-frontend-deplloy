@@ -16,7 +16,7 @@ export default function DeveloperBankDetails() {
           IFSCCode: '',
         },
       }}
-      validationSchema={developerValidation}
+      // validationSchema={developerValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {

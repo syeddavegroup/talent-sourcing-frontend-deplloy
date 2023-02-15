@@ -3,7 +3,7 @@ import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
 import { Box, Card, TextField, Typography, Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
-import { developerValidation } from '../../utils/formValidation';
+import { developerExperienceValidation } from '../../utils/formValidation';
 
 export default function DeveloperExperience() {
   return (
@@ -27,7 +27,7 @@ export default function DeveloperExperience() {
           },
         ],
       }}
-      validationSchema={developerValidation}
+      validationSchema={developerExperienceValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
