@@ -22,11 +22,12 @@ import { Form, Formik } from 'formik';
 
 import { developerValidation } from '../../utils/formValidation';
 
-import PersonalInfo from '../../components/developerOnboarding/DeveloperPersonalInfo';
 import DeveloperExperience from '../../components/developerOnboarding/DeveloperExperience';
 import DeveloperSkills from '../../components/developerOnboarding/DeveloperSkills';
 import DeveloperBankDetails from '../../components/developerOnboarding/DeveloperBankDetails';
 import ClientPersonalInfo from '../../components/clientOnboarding/ClientPersonalInfo';
+import ClientCompanyInfo from '../../components/clientOnboarding/ClientCompanyInfo';
+import ClientGallery from '../../components/clientOnboarding/ClientGallery';
 
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -71,43 +72,43 @@ export default function ClientOnBoarding() {
             }
           />
           <Tab
-            value='experience'
+            value='companyInformation'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Experience</TabName>
+                <TabName>Company Info</TabName>
               </Box>
             }
           />
           <Tab
-            value='skills'
+            value='gallery'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Skills</TabName>
+                <TabName>Gallery photo (office)</TabName>
               </Box>
             }
           />
-          <Tab
+          {/* <Tab
             value='bankDetails'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <TabName>Bank Details</TabName>
               </Box>
             }
-          />
+          /> */}
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='personalInformation'>
           <ClientPersonalInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='experience'>
-          <DeveloperExperience />
+        <TabPanel sx={{ p: 0 }} value='companyInformation'>
+          <ClientCompanyInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='skills'>
-          <DeveloperSkills />
+        <TabPanel sx={{ p: 0 }} value='gallery'>
+          <ClientGallery />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='bankDetails'>
+        {/* <TabPanel sx={{ p: 0 }} value='bankDetails'>
           <DeveloperBankDetails />
-        </TabPanel>
+        </TabPanel> */}
       </TabContext>
     </Card>
   );
