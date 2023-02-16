@@ -1,5 +1,5 @@
 import { Box, Button, Card, Grid, TextField, Typography } from '@mui/material';
-import { FieldArray, Formik } from 'formik';
+import { FieldArray, Form, Formik } from 'formik';
 import AddIcon from '@mui/icons-material/Add';
 // import { developerValidation } from 'src/@core/utils/formValidation';
 import { developerValidation } from '../../utils/formValidation';
@@ -16,16 +16,17 @@ export default function DeveloperBankDetails() {
           IFSCCode: '',
         },
       }}
-      validationSchema={developerValidation}
+      // validationSchema={developerValidation}
       validateOnChange={true}
       validateOnBlur={true}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         // same shape as initial values
         console.log(values);
+        resetForm({ values: '' });
       }}
     >
       {({ errors, touched, handleChange, handleBlur }) => (
-        <>
+        <Form>
           <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Box
               sx={{
@@ -136,7 +137,7 @@ export default function DeveloperBankDetails() {
               VIEW DETAILS
             </Button>
           </Box>
-        </>
+        </Form>
       )}
     </Formik>
   );

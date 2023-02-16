@@ -29,7 +29,7 @@ import { styled } from '@mui/material/styles';
 // import { border, shadows } from '@mui/system';
 import { Checkbox, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
-import { developerValidation } from '../../utils/formValidation';
+import { developerPersonalInformationValidation } from '../../utils/formValidation';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -66,7 +66,7 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
 
 export default function DeveloperPersonalInfo() {
   // const [openAlert, setOpenAlert] = useState(true);
-  const [imgSrc, setImgSrc] = useState('/images/avatars/1.png');
+  const [imgSrc, setImgSrc] = useState('');
   const [country, setCountry] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -109,15 +109,9 @@ export default function DeveloperPersonalInfo() {
   useEffect(() => {
     setCountry(countryData);
   }, []);
-  console.log(country);
+  // console.log(country);
 
-
-  useEffect(() => {
-  setState(stateData);
-  }, []);
-  console.log(country);
-
-  console.log(stateData);
+  // console.log(stateData);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
@@ -147,6 +141,7 @@ export default function DeveloperPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
+          profileImage: '',
           fullName: '',
           email: '',
           mobileNumber: '',
@@ -155,18 +150,8 @@ export default function DeveloperPersonalInfo() {
           city: '',
           headline: '',
         },
-        generalInformation: {
-          firstName: '',
-          lastName: '',
-          headline: '',
-        },
-        contactInfo: {
-          email: '',
-          address: '',
-          skypeId: '',
-        },
       }}
-      validationSchema={developerValidation}
+      // validationSchema={developerPersonalInformationValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
@@ -180,7 +165,12 @@ export default function DeveloperPersonalInfo() {
             <Box>
               <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <ImgStyled src={imgSrc} alt='Profile Pic' />
+                  <ImgStyled
+                    src={
+                      imgSrc ? imgSrc : require('../../assets/avatars/1.png')
+                    }
+                    alt='Profile Pic'
+                  />
                   <Box>
                     <ButtonStyled
                       component='label'
@@ -191,7 +181,8 @@ export default function DeveloperPersonalInfo() {
                       <input
                         hidden
                         type='file'
-                        onChange={onChange}
+                        name='personalInformation.profileImage'
+                        onChange={handleChange}
                         accept='image/png, image/jpeg'
                         id='account-settings-upload-image'
                       />
@@ -348,9 +339,9 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.state
                       }
                     >
-                    {state.map((cont) => (
-                      <MenuItem value={cont.value}>{cont.value}</MenuItem>
-                    ))}
+                      {state.map((cont) => (
+                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid>
