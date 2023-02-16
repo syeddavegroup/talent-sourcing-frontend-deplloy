@@ -31,8 +31,15 @@ export default function DeveloperSkills() {
         console.log(values);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur }) => (
-        <Form>
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+      }) => (
+        <Form onSubmit={handleSubmit}>
           <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Grid container spacing={5}>
               <FieldArray name='skills.skill'>
@@ -54,7 +61,7 @@ export default function DeveloperSkills() {
                           justifyContent: 'center',
                           cursor: 'pointer',
                         }}
-                        onClick={() => push()}
+                        onClick={() => push('')}
                       >
                         <AddIcon />{' '}
                         <Typography color={'#03308C'}>Add</Typography>
@@ -78,17 +85,17 @@ export default function DeveloperSkills() {
                           name={`skills.skill[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          error={
-                            touched.skills &&
-                            touched.skills.skill &&
-                            Boolean(errors.skills && errors.skills[index].skill)
-                          }
-                          helperText={
-                            touched.skills &&
-                            touched.skills.skill &&
-                            errors.skills &&
-                            errors.skills.skill
-                          }
+                          // error={
+                          //   touched.skills &&
+                          //   touched.skills.skill[index] &&
+                          //   Boolean(errors.skills && errors.skills.skill[index])
+                          // }
+                          // helperText={
+                          //   touched.skills &&
+                          //   touched.skills.skill[index] &&
+                          //   errors.skills &&
+                          //   errors.skills.skill[index]
+                          // }
                         />
                         <Box
                           sx={{ cursor: 'pointer' }}
@@ -124,7 +131,7 @@ export default function DeveloperSkills() {
                           justifyContent: 'center',
                           cursor: 'pointer',
                         }}
-                        onClick={() => push()}
+                        onClick={() => push('')}
                       >
                         <AddIcon />
                         <Typography color={'#03308C'}>Add</Typography>
@@ -149,18 +156,17 @@ export default function DeveloperSkills() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                           // error={
-                          //   touched.experience &&
-                          //   touched.experience[index].companyName &&
+                          //   touched.skills &&
+                          //   touched.skills.language[index] &&
                           //   Boolean(
-                          //     errors.experience &&
-                          //       errors.experience[index].companyName
+                          //     errors.skills && errors.skills.language[index]
                           //   )
                           // }
                           // helperText={
-                          //   touched.experience &&
-                          //   touched.experience[index].companyName &&
-                          //   errors.experience &&
-                          //   errors.experience[index].companyName
+                          //   touched.skills &&
+                          //   touched.skills.language[index] &&
+                          //   errors.skills &&
+                          //   errors.skills.language[index]
                           // }
                         />
                         <Box
@@ -216,7 +222,7 @@ export default function DeveloperSkills() {
                     marginY: '1rem',
                   }}
                 >
-                  <Typography variant='h4'>Add Experience</Typography>
+                  <Typography variant='h4'>Social Links</Typography>
                   <Box
                     sx={{
                       display: 'flex',

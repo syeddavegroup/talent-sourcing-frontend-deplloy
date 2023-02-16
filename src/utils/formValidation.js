@@ -42,15 +42,11 @@ export const developerExperienceValidation = Yup.object().shape({
 });
 
 export const developerSkillValidation = Yup.object().shape({
-  skills: Yup.array().of(
-    Yup.object().shape({
-      skill: Yup.array().of(Yup.string().required('Required')),
-      language: Yup.array().of(Yup.string().required('Required')),
-    })
-  ),
-  courses: Yup.object().shape({
-    name: Yup.string().required('Required'),
+  skills: Yup.object().shape({
+    skill: Yup.array().of(Yup.string().required('Required')),
+    language: Yup.array().of(Yup.string().required('Required')),
   }),
+
   socialProof: Yup.array().of(
     Yup.object().shape({
       linkedIn: Yup.string()

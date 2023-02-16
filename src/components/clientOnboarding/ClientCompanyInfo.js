@@ -17,7 +17,8 @@ import UploadLogo from '../../assets/upload-logo.svg';
 import RegisterLogo from '../../assets/registerDoc-logo.svg';
 import { clientCompanyInfoValidation } from '../../utils/formValidation';
 
-import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '../../assets/close-icon.svg';
+import UploadIcon from '../../assets/upload-button-icon.svg';
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -348,7 +349,7 @@ export default function ClientCompanyInfo() {
               </Typography>
             </Box>
             <Typography padding={'1rem 0'}>Select Files</Typography>
-            <Grid container gap={5} width={'100%'}>
+            <Grid container gap={5} width={'100%'} mb={'1.5rem'}>
               <Grid item width={'100%'}>
                 <Box
                   sx={{
@@ -380,6 +381,85 @@ export default function ClientCompanyInfo() {
                       id='account-settings-upload-image'
                     />
                   </ButtonStyled>
+                </Box>
+              </Grid>
+            </Grid>
+
+            <Box
+            // sx={{
+            //   display: 'flex',
+            //   gap: '.5rem',
+            //   alignItems: 'center',
+            // }}
+            >
+              <Typography mb={2}>Document Type</Typography>
+              <Typography mb={2} variant='subtitle1' color={'#79767E'}>
+                Registration Document
+              </Typography>
+            </Box>
+            <Grid container gap={5} width={'100%'}>
+              <Grid item width={'100%'}>
+                <Box
+                  sx={
+                    {
+                      // display: 'flex',
+                      // flexDirection: 'column',
+                      // alignItems: 'center',
+                      // justifyContent: 'center',
+                      // width: '100%',
+                      // overflow: 'hidden',
+                      // gap: '0.5rem',
+                      // border: '3px dashed #8A8D93',
+                      // borderSpacing: '5px',
+                      // padding: '1.5rem 0',
+                    }
+                  }
+                >
+                  <Typography>Description</Typography>
+                  <TextField
+                    fullWidth
+                    id='aboutAgency'
+                    name={`companyInformation.aboutAgency`}
+                    onChange={handleChange}
+                    multiline
+                    rows={5}
+                    maxRows={4}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    padding: '1rem 0',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    gap: '1rem',
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <Button
+                    color='error'
+                    variant='outlined'
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                    }}
+                  >
+                    <img src={CloseIcon} alt='' /> Cancel
+                  </Button>
+                  <Button
+                    sx={{
+                      backgroundColor: '#03308C',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      textTransform: 'capitalize',
+                    }}
+                    type='submit'
+                    variant='contained'
+                  >
+                    <img src={UploadIcon} alt='' />
+                    Upload
+                  </Button>
                 </Box>
               </Grid>
             </Grid>
