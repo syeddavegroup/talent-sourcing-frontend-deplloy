@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import ClientOnBoarding from './pages/ClientForm/clientPage';
-import DeveloperOnBoarding from './pages/DeveloperForm/developerPage';
+import ClientOnBoarding from './components/clientOnboarding/clientPage';
+import DeveloperOnBoarding from './components/developerOnboarding/developerPage';
 import VendorOnBoarding from './pages/VendorForm/vendorPage';
 
 function App() {

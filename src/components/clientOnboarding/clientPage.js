@@ -18,14 +18,10 @@ import { LocalizationProvider } from '@mui/lab';
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css';
-import { Form, Formik } from 'formik';
 
-import { developerValidation } from '../../utils/formValidation';
-
-import DeveloperPersonalInfo from '../../components/developerOnboarding/DeveloperPersonalInfo';
-import DeveloperExperience from '../../components/developerOnboarding/DeveloperExperience';
-import DeveloperSkills from '../../components/developerOnboarding/DeveloperSkills';
-import DeveloperBankDetails from '../../components/developerOnboarding/DeveloperBankDetails';
+import ClientPersonalInfo from './ClientPersonalInfo';
+import ClientCompanyInfo from './ClientCompanyInfo';
+import ClientGallery from './ClientGallery';
 
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -45,7 +41,7 @@ const TabName = styled('span')(({ theme }) => ({
   },
 }));
 
-export default function DeveloperOnBoarding() {
+export default function ClientOnBoarding() {
   // ** State
   const [value, setValue] = useState('personalInformation');
 
@@ -70,43 +66,43 @@ export default function DeveloperOnBoarding() {
             }
           />
           <Tab
-            value='experience'
+            value='companyInformation'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Experience</TabName>
+                <TabName>Company Info</TabName>
               </Box>
             }
           />
           <Tab
-            value='skills'
+            value='gallery'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Skills</TabName>
+                <TabName>Gallery photo (office)</TabName>
               </Box>
             }
           />
-          <Tab
+          {/* <Tab
             value='bankDetails'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <TabName>Bank Details</TabName>
               </Box>
             }
-          />
+          /> */}
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='personalInformation'>
-          <DeveloperPersonalInfo />
+          <ClientPersonalInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='experience'>
-          <DeveloperExperience />
+        <TabPanel sx={{ p: 0 }} value='companyInformation'>
+          <ClientCompanyInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='skills'>
-          <DeveloperSkills />
+        <TabPanel sx={{ p: 0 }} value='gallery'>
+          <ClientGallery />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='bankDetails'>
+        {/* <TabPanel sx={{ p: 0 }} value='bankDetails'>
           <DeveloperBankDetails />
-        </TabPanel>
+        </TabPanel> */}
       </TabContext>
     </Card>
   );
