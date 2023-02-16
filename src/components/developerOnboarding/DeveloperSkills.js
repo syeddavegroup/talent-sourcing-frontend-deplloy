@@ -2,8 +2,9 @@ import React from 'react';
 import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
 import { Box, Card, TextField, Typography, Grid, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CancelIcon from '../../assets/cancel-icon.svg';
 
-import { developerValidation } from '../../utils/formValidation';
+import { developerSkillValidation } from '../../utils/formValidation';
 
 export default function DeveloperSkills() {
   return (
@@ -22,7 +23,7 @@ export default function DeveloperSkills() {
           },
         ],
       }}
-      validationSchema={developerValidation}
+      validationSchema={developerSkillValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
@@ -30,8 +31,15 @@ export default function DeveloperSkills() {
         console.log(values);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur }) => (
-        <Form>
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+      }) => (
+        <Form onSubmit={handleSubmit}>
           <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Grid container spacing={5}>
               <FieldArray name='skills.skill'>
@@ -53,17 +61,25 @@ export default function DeveloperSkills() {
                           justifyContent: 'center',
                           cursor: 'pointer',
                         }}
-                        onClick={() => push()}
+                        onClick={() => push('')}
                       >
                         <AddIcon />{' '}
                         <Typography color={'#03308C'}>Add</Typography>
                       </Box>
                     </Box>
                     {values.skills.skill.map((_, index) => (
-                      <div key={index}>
+                      <Box
+                        key={index}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
+                        }}
+                      >
                         <TextField
                           fullWidth
-                          sx={{ marginBottom: '1rem' }}
                           id='skills'
                           label='skill'
                           name={`skills.skill[${index}]`}
@@ -71,17 +87,27 @@ export default function DeveloperSkills() {
                           onBlur={handleBlur}
                           // error={
                           //   touched.skills &&
-                          //   touched.skills[index].skill &&
-                          //   Boolean(errors.skills && errors.skills[index].skill)
+                          //   touched.skills.skill[index] &&
+                          //   Boolean(errors.skills && errors.skills.skill[index])
                           // }
                           // helperText={
                           //   touched.skills &&
-                          //   touched.skills[index].skill &&
+                          //   touched.skills.skill[index] &&
                           //   errors.skills &&
-                          //   errors.skills[index].skill
+                          //   errors.skills.skill[index]
                           // }
                         />
-                      </div>
+                        <Box
+                          sx={{ cursor: 'pointer' }}
+                          onClick={() => remove(index)}
+                        >
+                          <img
+                            src={CancelIcon}
+                            alt=''
+                            style={{ width: '20px' }}
+                          />
+                        </Box>
+                      </Box>
                     ))}
                   </Grid>
                 )}
@@ -105,38 +131,55 @@ export default function DeveloperSkills() {
                           justifyContent: 'center',
                           cursor: 'pointer',
                         }}
-                        onClick={() => push()}
+                        onClick={() => push('')}
                       >
                         <AddIcon />
                         <Typography color={'#03308C'}>Add</Typography>
                       </Box>
                     </Box>
                     {values.skills.language.map((_, index) => (
-                      <div key={index}>
+                      <Box
+                        key={index}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
+                        }}
+                      >
                         <TextField
                           fullWidth
-                          sx={{ marginBottom: '1rem' }}
                           id='skills'
                           label='Language'
                           name={`skills.language[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           // error={
-                          //   touched.experience &&
-                          //   touched.experience[index].companyName &&
+                          //   touched.skills &&
+                          //   touched.skills.language[index] &&
                           //   Boolean(
-                          //     errors.experience &&
-                          //       errors.experience[index].companyName
+                          //     errors.skills && errors.skills.language[index]
                           //   )
                           // }
                           // helperText={
-                          //   touched.experience &&
-                          //   touched.experience[index].companyName &&
-                          //   errors.experience &&
-                          //   errors.experience[index].companyName
+                          //   touched.skills &&
+                          //   touched.skills.language[index] &&
+                          //   errors.skills &&
+                          //   errors.skills.language[index]
                           // }
                         />
-                      </div>
+                        <Box
+                          sx={{ cursor: 'pointer' }}
+                          onClick={() => remove(index)}
+                        >
+                          <img
+                            src={CancelIcon}
+                            alt=''
+                            style={{ width: '20px' }}
+                          />
+                        </Box>
+                      </Box>
                     ))}
                   </Grid>
                 )}
@@ -145,7 +188,7 @@ export default function DeveloperSkills() {
             <Box
               sx={{
                 width: '100%',
-                padding: '1rem',
+                padding: '1rem 0',
                 display: 'flex',
                 alignItems: 'flex-end',
                 gap: '1rem',
@@ -179,7 +222,7 @@ export default function DeveloperSkills() {
                     marginY: '1rem',
                   }}
                 >
-                  <Typography variant='h4'>Add Experience</Typography>
+                  <Typography variant='h4'>Social Links</Typography>
                   <Box
                     sx={{
                       display: 'flex',
