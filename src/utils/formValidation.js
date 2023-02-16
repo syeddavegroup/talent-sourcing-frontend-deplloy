@@ -112,46 +112,6 @@ export const clientCompanyInfoValidation = Yup.object().shape({
 });
 
 // Vendor Validation
-export const clientPersonalValidation = Yup.object().shape({
-  personalInformation: Yup.object().shape({
-    fullName: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid Email').required('Required'),
-    mobileNumber: Yup.string()
-      .min(10, 'must be 10 digits')
-      .max(10, 'must be 10 digits')
-      .required('Required'),
-    country: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-  }),
-});
-
-export const clientCompanyInfoValidation = Yup.object().shape({
-  companyInformation: Yup.object().shape({
-    companyName: Yup.string().required('Required'),
-    companyEmail: Yup.string().email('Invalid email').required('Required'),
-    mobileNumber: Yup.string()
-      .min(10, 'must be 10 digits')
-      .max(10, 'must be 10 digits')
-      .required('Required'),
-    country: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-    agencyLink1: Yup.string()
-      .matches(
-        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Invalid URL'
-      )
-      .required('Required'),
-
-    noOfEmployees: Yup.number().required('Required'),
-    aboutAgency: Yup.string()
-      .min(15, 'must be 15 character or more')
-      .required('Required'),
-  }),
-});
-
-// Vendor Validation
 export const vendorValidation = Yup.object().shape({
   personalInformation: Yup.object().shape({
     fullName: Yup.string().required('Required'),
