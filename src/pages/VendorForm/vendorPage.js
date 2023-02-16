@@ -19,14 +19,11 @@ import { LocalizationProvider } from '@mui/lab';
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css';
 import { Form, Formik } from 'formik';
-
 import { developerValidation } from '../../utils/formValidation';
-
-import PersonalInfo from '../../components/developerOnboarding/DeveloperPersonalInfo';
-import DeveloperExperience from '../../components/developerOnboarding/DeveloperExperience';
 import DeveloperSkills from '../../components/developerOnboarding/DeveloperSkills';
 import DeveloperBankDetails from '../../components/developerOnboarding/DeveloperBankDetails';
 import VendorPersonalInfo from "../../components/vendorOnboarding/VendorPersonalInfo";
+import VendorCompanyInfo from '../../components/vendorOnboarding/VendorCompanyInfo';
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     minWidth: 100,
@@ -70,14 +67,14 @@ export default function VendorOnBoarding() {
             }
           />
           <Tab
-            value='experience'
+            value='Company Info'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Experience</TabName>
+                <TabName>Comapny Info</TabName>
               </Box>
             }
           />
-          <Tab
+         {/* <Tab
             value='skills'
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -91,22 +88,22 @@ export default function VendorOnBoarding() {
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <TabName>Bank Details</TabName>
               </Box>
-            }
-          />
+              />
+            }*/}
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='personalInformation'>
           <VendorPersonalInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='experience'>
-          <DeveloperExperience />
+        <TabPanel sx={{ p: 0 }} value='Company Info'>
+          <VendorCompanyInfo />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='skills'>
+       { /*<TabPanel sx={{ p: 0 }} value='skills'>
           <DeveloperSkills />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value='bankDetails'>
           <DeveloperBankDetails />
-        </TabPanel>
+          </TabPanel>*/}
       </TabContext>
     </Card>
   );

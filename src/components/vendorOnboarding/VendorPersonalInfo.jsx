@@ -66,7 +66,7 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
 
 export default function VendorPersonalInfo() {
   // const [openAlert, setOpenAlert] = useState(true);
-  const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
+  const [imgSrc, setImgSrc] = useState("");
   const [country, setCountry] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
@@ -174,7 +174,12 @@ export default function VendorPersonalInfo() {
             <Box>
               <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <ImgStyled src={imgSrc} alt="Profile Pic" />
+                <ImgStyled
+                src={
+                  imgSrc ? imgSrc : require('../../assets/avatars/3.png')
+                }
+                alt='Profile Pic'
+              />
                   <Box>
                     <ButtonStyled
                       component="label"
