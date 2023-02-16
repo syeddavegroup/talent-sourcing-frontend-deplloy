@@ -1,37 +1,37 @@
-import React, { useEffect } from 'react';
-import CardContent from '@mui/material/CardContent';
+import React, { useEffect } from "react";
+import CardContent from "@mui/material/CardContent";
 
 // ** React Imports
-import { useState } from 'react';
-import { Country, State, City } from 'country-state-city';
+import { useState } from "react";
+import { Country, State, City } from "country-state-city";
 
 // ** MUI Imports
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 // import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 // import Link from '@mui/material/Link';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
 // import CardHeader from '@mui/material/CardHeader';
-import InputLabel from '@mui/material/InputLabel';
+import InputLabel from "@mui/material/InputLabel";
 // import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
+import Typography from "@mui/material/Typography";
+import FormControl from "@mui/material/FormControl";
 // import OutlinedInput from '@mui/material/OutlinedInput';
 // import InputAdornment from '@mui/material/InputAdornment';
 // import FormHelperText from '@mui/material/FormHelperText';
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 // ** Icons Imports
 // import EyeOutline from 'mdi-material-ui/EyeOutline';
 // import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
 // import { border, shadows } from '@mui/system';
-import { Checkbox, MenuItem } from '@mui/material';
-import { Form, Formik } from 'formik';
-import { developerValidation } from '../../utils/formValidation';
+import { Checkbox, MenuItem } from "@mui/material";
+import { Form, Formik } from "formik";
+import { developerValidation } from "../../utils/formValidation";
 
-const ImgStyled = styled('img')(({ theme }) => ({
+const ImgStyled = styled("img")(({ theme }) => ({
   width: 120,
   height: 120,
   marginRight: theme.spacing(6.25),
@@ -39,36 +39,36 @@ const ImgStyled = styled('img')(({ theme }) => ({
 }));
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
-    width: '100%',
-    textAlign: 'center',
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    textAlign: "center",
   },
-  background: '#fff',
-  border: '1px solid #1D19E3',
-  color: '#1D19E3',
-  '&:hover': {
-    'background-color': '#1D19E3',
-    color: '#fff',
-    boxShadow: 'none',
+  background: "#fff",
+  border: "1px solid #1D19E3",
+  color: "#1D19E3",
+  "&:hover": {
+    "background-color": "#1D19E3",
+    color: "#fff",
+    boxShadow: "none",
   },
-  boxShadow: 'none',
+  boxShadow: "none",
 }));
 
 const ResetButtonStyled = styled(Button)(({ theme }) => ({
   marginLeft: theme.spacing(4.5),
-  [theme.breakpoints.down('sm')]: {
-    width: '100%',
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
     marginLeft: 0,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing(4),
   },
 }));
 
-export default function ClientPersonalInfo() {
+export default function VendorPersonalInfo() {
   // const [openAlert, setOpenAlert] = useState(true);
-  const [imgSrc, setImgSrc] = useState('/images/avatars/1.png');
+  const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
   const [country, setCountry] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   const [state, setState] = useState([]);
 
@@ -100,16 +100,15 @@ export default function ClientPersonalInfo() {
     displayValue: `${country.name} - ${country.isoCode}`,
     isoCode: country.isoCode,
   }));
- 
 
-  const stateData = State.getStatesOfCountry('IN').map((state) => ({
+  const stateData = State.getStatesOfCountry("IN").map((state) => ({
     value: state.name,
     displayValue: `${state.name} - ${state.isoCode}`,
   }));
 
   useEffect(() => {
     setCountry(countryData);
-  }, [countryData]);
+  }, []);
   console.log(country);
 
   console.log(stateData);
@@ -142,23 +141,23 @@ export default function ClientPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
-          fullName: '',
-          email: '',
-          mobileNumber: '',
-          country: '',
-          state: '',
-          city: '',
-          headline: '',
+          fullName: "",
+          email: "",
+          mobileNumber: "",
+          country: "",
+          state: "",
+          city: "",
+          headline: "",
         },
         generalInformation: {
-          firstName: '',
-          lastName: '',
-          headline: '',
+          firstName: "",
+          lastName: "",
+          headline: "",
         },
         contactInfo: {
-          email: '',
-          address: '',
-          skypeId: '',
+          email: "",
+          address: "",
+          skypeId: "",
         },
       }}
       validationSchema={developerValidation}
@@ -174,48 +173,46 @@ export default function ClientPersonalInfo() {
           <Form>
             <Box>
               <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <ImgStyled src={imgSrc} alt='Profile Pic' />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <ImgStyled src={imgSrc} alt="Profile Pic" />
                   <Box>
                     <ButtonStyled
-                      component='label'
-                      variant='contained'
-                      htmlFor='account-settings-upload-image'
+                      component="label"
+                      variant="contained"
+                      htmlFor="account-settings-upload-image"
                     >
                       Upload New Photo
                       <input
                         hidden
-                        type='file'
+                        type="file"
                         onChange={onChange}
-                        accept='image/png, image/jpeg'
-                        id='account-settings-upload-image'
+                        accept="image/png, image/jpeg"
+                        id="account-settings-upload-image"
                       />
                     </ButtonStyled>
                     <ResetButtonStyled
-                      color='error'
-                      variant='outlined'
-                      onClick={() => setImgSrc('../../assets/avatars/1.png')}
+                      color="error"
+                      variant="outlined"
+                      onClick={() => setImgSrc("../../assets/avatars/1.png")}
                     >
                       Reset
                     </ResetButtonStyled>
-                    <Typography variant='body2' sx={{ marginTop: 5 }}>
+                    <Typography variant="body2" sx={{ marginTop: 5 }}>
                       Allowed JPG, GIF or PNG. Max size of 800K
                     </Typography>
                   </Box>
                 </Box>
               </Grid>
-              <Box>
-                <Checkbox /> Open to work
-              </Box>
+
               <Grid container spacing={5}>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    id='personalInformation.fullName'
-                    name='personalInformation.fullName'
+                    id="personalInformation.fullName"
+                    name="personalInformation.fullName"
                     fullWidth
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    label='First Name'
+                    label="First Name"
                     error={
                       touched.personalInformation &&
                       touched.personalInformation.fullName &&
@@ -235,10 +232,10 @@ export default function ClientPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type='email'
-                    label='Email'
-                    id='personalInformation.email'
-                    name='personalInformation.email'
+                    type="email"
+                    label="Email"
+                    id="personalInformation.email"
+                    name="personalInformation.email"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -261,11 +258,11 @@ export default function ClientPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type='number'
-                    id='personalInformation.mobileNumber'
-                    name='personalInformation.mobileNumber'
-                    label='Mobile'
-                    placeholder='99999XXXXXXX'
+                    type="number"
+                    id="personalInformation.mobileNumber"
+                    name="personalInformation.mobileNumber"
+                    label="Mobile"
+                    placeholder="99999XXXXXXX"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -287,12 +284,12 @@ export default function ClientPersonalInfo() {
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='country'>Country</InputLabel>
+                    <InputLabel id="country">Country</InputLabel>
                     <Select
-                      labelId='demo-simple-select-label'
-                      id='personalInformation.country'
-                      name='personalInformation.country'
-                      label='Country'
+                      labelId="demo-simple-select-label"
+                      id="personalInformation.country"
+                      name="personalInformation.country"
+                      label="Country"
                       // value={selectedCountry}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -320,12 +317,12 @@ export default function ClientPersonalInfo() {
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='state'>State</InputLabel>
+                    <InputLabel id="state">State</InputLabel>
                     <Select
-                      labelId='state'
-                      id='personalInformation.state'
-                      name='personalInformation.state'
-                      label='State'
+                      labelId="state"
+                      id="personalInformation.state"
+                      name="personalInformation.state"
+                      label="State"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -352,12 +349,12 @@ export default function ClientPersonalInfo() {
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id='city'>City</InputLabel>
+                    <InputLabel id="city">City</InputLabel>
                     <Select
-                      labelId='city'
-                      id='personalInformation.city'
-                      name='personalInformation.city'
-                      label='City'
+                      labelId="city"
+                      id="personalInformation.city"
+                      name="personalInformation.city"
+                      label="City"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -385,11 +382,11 @@ export default function ClientPersonalInfo() {
                 <Grid item xs={12} md={12}>
                   <TextField
                     fullWidth
-                    type='text'
-                    id='personalInformation.headline'
-                    name='personalInformation.headline'
-                    label='Headline'
-                    placeholder='Write about yourself'
+                    type="text"
+                    id="personalInformation.headline"
+                    name="personalInformation.headline"
+                    label="Designation"
+                    placeholder="Designation"
                   />
                 </Grid>
               </Grid>
@@ -397,24 +394,24 @@ export default function ClientPersonalInfo() {
             <Grid item xs={12} md={12} mt={5}>
               <Box
                 sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'center',
-                  justifyContent: 'right',
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "right",
                 }}
               >
                 <Button
-                  style={{ backgroundColor: '#03308C' }}
-                  type='submit'
-                  variant='contained'
-                  size='large'
+                  style={{ backgroundColor: "#03308C" }}
+                  type="submit"
+                  variant="contained"
+                  size="large"
                 >
                   Save Changes
                 </Button>
                 <ResetButtonStyled
-                  color='error'
-                  variant='outlined'
-                  onClick={() => setImgSrc('/images/avatars/1.png')}
+                  color="error"
+                  variant="outlined"
+                  onClick={() => setImgSrc("/images/avatars/1.png")}
                 >
                   Cancel
                 </ResetButtonStyled>

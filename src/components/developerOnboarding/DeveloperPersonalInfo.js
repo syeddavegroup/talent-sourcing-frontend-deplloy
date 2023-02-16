@@ -111,6 +111,12 @@ export default function DeveloperPersonalInfo() {
   }, []);
   console.log(country);
 
+
+  useEffect(() => {
+  setState(stateData);
+  }, []);
+  console.log(country);
+
   console.log(stateData);
 
   const updatedCities = (stateId) =>
@@ -342,9 +348,9 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.state
                       }
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Germany</MenuItem>
-                      <MenuItem value={30}>United State</MenuItem>
+                    {state.map((cont) => (
+                      <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                    ))}
                     </Select>
                   </FormControl>
                 </Grid>
