@@ -18,7 +18,11 @@ import { styled } from '@mui/material/styles';
 
 import { Checkbox, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
+<<<<<<< HEAD
+import { developerValidation } from '../../utils/formValidation';
+=======
 
+>>>>>>> 5b4e43b6ddf59b0d5ad26e5bb691c6a86e3ed5c4
 import { clientPersonalValidation } from '../../utils/formValidation';
 
 const ImgStyled = styled('img')(({ theme }) => ({
@@ -98,7 +102,10 @@ export default function ClientPersonalInfo() {
 
   useEffect(() => {
     setCountry(countryData);
-  }, []);
+  }, [countryData]);
+  console.log(country);
+
+  
   // console.log(country);
 
   // console.log(stateData);
@@ -113,11 +120,8 @@ export default function ClientPersonalInfo() {
   // country api called
   // useEffect(() => {
   //   const getCountry = async () => {
-  //     const res = await fetch('https://api.countrystatecity.in/v1/countries', {
-  //       method: 'GET',
-  //       headers: headers,
-  //       redirect: 'follow'
-  //     })
+  //     const res = await fetch('https://api.countrystatecity.in/v1/countries'
+  //      
   //     const countryList = await res.json()
   //     setCountry(countryList)
   //   }
