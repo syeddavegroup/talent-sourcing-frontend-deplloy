@@ -30,6 +30,7 @@ import { styled } from '@mui/material/styles';
 import { Checkbox, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { developerValidation } from '../../utils/formValidation';
+import { clientPersonalValidation } from '../../utils/formValidation';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -66,7 +67,7 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
 
 export default function ClientPersonalInfo() {
   // const [openAlert, setOpenAlert] = useState(true);
-  const [imgSrc, setImgSrc] = useState('/images/avatars/1.png');
+  const [imgSrc, setImgSrc] = useState('');
   const [country, setCountry] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -112,7 +113,10 @@ export default function ClientPersonalInfo() {
   }, [countryData]);
   console.log(country);
 
-  console.log(stateData);
+  
+  // console.log(country);
+
+  // console.log(stateData);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
@@ -124,11 +128,8 @@ export default function ClientPersonalInfo() {
   // country api called
   // useEffect(() => {
   //   const getCountry = async () => {
-  //     const res = await fetch('https://api.countrystatecity.in/v1/countries', {
-  //       method: 'GET',
-  //       headers: headers,
-  //       redirect: 'follow'
-  //     })
+  //     const res = await fetch('https://api.countrystatecity.in/v1/countries'
+  //      
   //     const countryList = await res.json()
   //     setCountry(countryList)
   //   }
@@ -142,6 +143,7 @@ export default function ClientPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
+          profileImage: '',
           fullName: '',
           email: '',
           mobileNumber: '',
@@ -150,18 +152,8 @@ export default function ClientPersonalInfo() {
           city: '',
           headline: '',
         },
-        generalInformation: {
-          firstName: '',
-          lastName: '',
-          headline: '',
-        },
-        contactInfo: {
-          email: '',
-          address: '',
-          skypeId: '',
-        },
       }}
-      validationSchema={developerValidation}
+      validationSchema={clientPersonalValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
@@ -169,13 +161,26 @@ export default function ClientPersonalInfo() {
         console.log(values);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, setValues }) => (
-        <CardContent>
-          <Form>
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        setValues,
+        handleSubmit,
+      }) => (
+        <form onSubmit={handleSubmit}>
+          <CardContent>
             <Box>
               <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <ImgStyled src={imgSrc} alt='Profile Pic' />
+                  <ImgStyled
+                    src={
+                      imgSrc ? imgSrc : require('../../assets/avatars/3.png')
+                    }
+                    alt='Profile Pic'
+                  />
                   <Box>
                     <ButtonStyled
                       component='label'
@@ -186,7 +191,8 @@ export default function ClientPersonalInfo() {
                       <input
                         hidden
                         type='file'
-                        onChange={onChange}
+                        name='personalInformation.profileImage'
+                        onChange={handleChange}
                         accept='image/png, image/jpeg'
                         id='account-settings-upload-image'
                       />
@@ -311,8 +317,10 @@ export default function ClientPersonalInfo() {
                         errors.personalInformation.country
                       }
                     >
-                      {country.map((cont) => (
-                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                      {country.map((cont, index) => (
+                        <MenuItem key={index} value={cont.value}>
+                          {cont.value}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
@@ -388,6 +396,7 @@ export default function ClientPersonalInfo() {
                     type='text'
                     id='personalInformation.headline'
                     name='personalInformation.headline'
+                    onChange={handleChange}
                     label='Headline'
                     placeholder='Write about yourself'
                   />
@@ -420,8 +429,8 @@ export default function ClientPersonalInfo() {
                 </ResetButtonStyled>
               </Box>
             </Grid>
-          </Form>
-        </CardContent>
+          </CardContent>
+        </form>
       )}
     </Formik>
   );
