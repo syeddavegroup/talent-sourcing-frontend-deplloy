@@ -20,10 +20,10 @@ import { LocalizationProvider } from '@mui/lab';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Form, Formik } from 'formik';
 import { developerValidation } from '../../utils/formValidation';
-import DeveloperSkills from '../../components/developerOnboarding/DeveloperSkills';
-import DeveloperBankDetails from '../../components/developerOnboarding/DeveloperBankDetails';
-import VendorPersonalInfo from "../../components/vendorOnboarding/VendorPersonalInfo";
-import VendorCompanyInfo from '../../components/vendorOnboarding/VendorCompanyInfo';
+import DeveloperSkills from '../developerOnboarding/DeveloperSkills';
+import DeveloperBankDetails from '../developerOnboarding/DeveloperBankDetails';
+import VendorPersonalInfo from "./VendorPersonalInfo";
+import VendorCompanyInfo from './VendorCompanyInfo';
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     minWidth: 100,
