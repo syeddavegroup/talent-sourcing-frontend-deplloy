@@ -1,17 +1,17 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import LandingPage from "./pages/LandingPages/LandingPage";
+import LandingPage from "./components/Landing Page/LandingPage";
 
-import APage from "./pages/AdminPages/APage";
-import ADashboardPage from "./pages/AdminPages/ADashboardPage";
-import AClientsPage from "./pages/AdminPages/AClientsPage";
-import ADevelopersPage from "./pages/AdminPages/ADevelopersPage";
-import AVendorsPage from "./pages/AdminPages/AVendorsPage";
-import ASettingsPage from "./pages/AdminPages/ASettingsPage";
+import APage from "./components/Admin/APage";
+import ADashboardPage from "./components/Admin/Dashboard/DashboardPage";
+import AClientsPage from "./components/Admin/Clients/ClientsPage";
+import ADevelopersPage from "./components/Admin/Developers/DevelopersPage";
+import AVendorsPage from "./components/Admin/Vendors/VendorsPage";
+import ASettingsPage from "./components/Admin/Settings/SettingsPage";
 
-import ClientOnBoarding from "./pages/ClientForm/clientPage";
-import DeveloperOnBoarding from "./pages/DeveloperForm/developerPage";
-import VendorOnBoarding from "./pages/VendorForm/vendorPage";
+import ClientOnBoarding from "./components/clientOnboarding/clientPage";
+import DeveloperOnBoarding from "./components/developerOnboarding/developerPage";
+import VendorOnBoarding from "./components/vendorOnboarding/vendorPage";
 
 function App() {
   return (

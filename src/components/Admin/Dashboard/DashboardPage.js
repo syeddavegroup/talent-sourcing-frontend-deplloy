@@ -1,8 +1,8 @@
 import React from "react";
 
-import DashboardCards from "../../components/Admin/Dashboard/DashboardCards";
-import DashboardTimeline from "../../components/Admin/Dashboard/DashboardTimeline";
-import DashboardMembers from "../../components/Admin/Dashboard/DashboardMembers";
+import DashboardCards from "./DashboardCards";
+import DashboardTimeline from "./DashboardTimeline";
+import DashboardMembers from "./DashboardMembers";
 import { Box } from "@mui/material";
 
 const ADashboardPage = () => {
