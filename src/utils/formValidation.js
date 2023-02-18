@@ -47,28 +47,26 @@ export const developerSkillValidation = Yup.object().shape({
     language: Yup.array().of(Yup.string().required('Required')),
   }),
 
-  socialProof: Yup.array().of(
-    Yup.object().shape({
-      linkedIn: Yup.string()
-        .matches(
-          /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-          'Invalid URL'
-        )
-        .required('Required'),
-      twitter: Yup.string().matches(
+  socialProof: Yup.object().shape({
+    linkedIn: Yup.string()
+      .matches(
         /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
         'Invalid URL'
-      ),
-      instagram: Yup.string().matches(
-        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Invalid URL'
-      ),
-      facebook: Yup.string().matches(
-        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Invalid URL'
-      ),
-    })
-  ),
+      )
+      .required('Required'),
+    twitter: Yup.string().matches(
+      /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      'Invalid URL'
+    ),
+    instagram: Yup.string().matches(
+      /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      'Invalid URL'
+    ),
+    facebook: Yup.string().matches(
+      /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      'Invalid URL'
+    ),
+  }),
 });
 
 // Client Validation
