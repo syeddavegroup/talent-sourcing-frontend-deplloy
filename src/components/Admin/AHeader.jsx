@@ -3,6 +3,7 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
+  Link,
   Typography,
   TextField,
   InputAdornment,
@@ -20,7 +21,7 @@ const AHeader = () => {
     >
       <Toolbar>
         <Typography variant="h5" noWrap fontWeight="bold" color="blue">
-          D-Community
+          <Link href="/">D-Community</Link>
         </Typography>
 
         <TextField
