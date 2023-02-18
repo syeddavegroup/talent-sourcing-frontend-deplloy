@@ -11,7 +11,7 @@ import ASettingsPage from "./components/Admin/Settings/SettingsPage";
 
 import ClientOnBoarding from "./components/clientOnboarding/clientPage";
 import DeveloperOnBoarding from "./components/developerOnboarding/developerPage";
-import VendorOnBoarding from "./components/vendorOnboarding/vendorPage";
+import VendorOnBoarding from "./components/vendorOnboarding/VendorPage";
 
 function App() {
   return (

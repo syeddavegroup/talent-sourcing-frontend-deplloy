@@ -19,9 +19,6 @@ import { LocalizationProvider } from '@mui/lab';
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css';
 import { Form, Formik } from 'formik';
-import { developerValidation } from '../../utils/formValidation';
-import DeveloperSkills from '../developerOnboarding/DeveloperSkills';
-import DeveloperBankDetails from '../developerOnboarding/DeveloperBankDetails';
 import VendorPersonalInfo from "./VendorPersonalInfo";
 import VendorCompanyInfo from './VendorCompanyInfo';
 const Tab = styled(MuiTab)(({ theme }) => ({
