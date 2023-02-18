@@ -53,7 +53,7 @@ export default function ClientCompanyInfo() {
         },
         gallery: [''],
       }}
-      // validationSchema={clientCompanyInfoValidation}
+      validationSchema={clientCompanyInfoValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
@@ -68,8 +68,9 @@ export default function ClientCompanyInfo() {
         handleChange,
         handleBlur,
         handleSubmit,
+        handleReset,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Grid container spacing={5}>
               <Grid item xs={12} md={6}>
@@ -328,9 +329,9 @@ export default function ClientCompanyInfo() {
               >
                 Save
               </Button>
-              <Button color='error' variant='outlined'>
+              {/* <Button color='error' variant='outlined' >
                 Cancel
-              </Button>
+              </Button> */}
             </Box>
           </Card>
 
@@ -384,7 +385,7 @@ export default function ClientCompanyInfo() {
               </Grid>
             </Grid>
           </Card>
-        </form>
+        </Form>
       )}
     </Formik>
   );
