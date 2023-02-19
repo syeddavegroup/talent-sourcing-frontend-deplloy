@@ -7,17 +7,15 @@ import ANav from "../ANav";
 
 const AWrapper = (props) => {
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
       <AHeader />
       <ANav />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 0 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Toolbar />
-        <Box sx={{ p: 0, minHeight: "100vh", borderRadius: 3 }}>
-          {props.children}
-        </Box>
+        <Box sx={{ p: 3, minHeight: "100vh" }}>{props.children}</Box>
       </Box>
     </Box>
   );

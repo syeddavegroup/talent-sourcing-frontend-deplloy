@@ -1,13 +1,7 @@
 import React from "react";
-import VendorPage from "../../vendorOnboarding/VendorPage"
 
 const VendorsPage = () => {
-  return <div>
-  
-  <VendorPage/>
-  
-  
-  </div>;
+  return <div>vendors page</div>;
 };
 
 export default VendorsPage;
