@@ -111,9 +111,6 @@ export default function DeveloperBankDetails() {
               >
                 Save
               </Button>
-              <Button color='error' variant='outlined'>
-                Cancel
-              </Button>
             </Box>
           </Card>
           <Box

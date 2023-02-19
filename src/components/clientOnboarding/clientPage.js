@@ -75,14 +75,6 @@ export default function ClientOnBoarding() {
               </Box>
             }
           />
-          {/* <Tab
-            value='bankDetails'
-            label={
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Bank Details</TabName>
-              </Box>
-            }
-          /> */}
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value='personalInformation'>
@@ -94,9 +86,6 @@ export default function ClientOnBoarding() {
         <TabPanel sx={{ p: 0 }} value='gallery'>
           <ClientGallery />
         </TabPanel>
-        {/* <TabPanel sx={{ p: 0 }} value='bankDetails'>
-          <DeveloperBankDetails />
-        </TabPanel> */}
       </TabContext>
     </Card>
   );

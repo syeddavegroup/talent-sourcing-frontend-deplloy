@@ -329,9 +329,7 @@ export default function VendorCompanyInfo() {
               >
                 Save
               </Button>
-              <Button color='error' variant='outlined'>
-                Cancel
-              </Button>
+              
             </Box>
           </Card>
 
