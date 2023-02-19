@@ -413,13 +413,7 @@ export default function VendorPersonalInfo() {
                 >
                   Save Changes
                 </Button>
-                <ResetButtonStyled
-                  color='error'
-                  variant='outlined'
-                  onClick={() => setImgSrc('/images/avatars/1.png')}
-                >
-                  Cancel
-                </ResetButtonStyled>
+               
               </Box>
             </Grid>
           </Form>

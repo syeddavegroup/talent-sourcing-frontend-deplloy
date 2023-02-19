@@ -71,7 +71,7 @@ export default function DeveloperExperience() {
                 </Box>
 
                 {values.experience.map((_, index) => (
-                  <div className='relative' key={index}>
+                  <Box className='relative' key={index}>
                     <Grid container spacing={5}>
                       <Grid item xs={12} md={6}>
                         <TextField
@@ -214,15 +214,17 @@ export default function DeveloperExperience() {
                       >
                         Save
                       </Button>
-                      <Button
-                        color='error'
-                        variant='outlined'
-                        onClick={() => remove(index)}
-                      >
-                        Cancel
-                      </Button>
+                      {index > 0 && (
+                        <Button
+                          color='error'
+                          variant='outlined'
+                          onClick={() => remove(index)}
+                        >
+                          Cancel
+                        </Button>
+                      )}
                     </Box>
-                  </div>
+                  </Box>
                 ))}
               </Card>
             )}
@@ -390,9 +392,15 @@ export default function DeveloperExperience() {
                       >
                         Save
                       </Button>
-                      <Button color='error' variant='outlined'>
-                        Cancel
-                      </Button>
+                      {index > 0 && (
+                        <Button
+                          color='error'
+                          variant='outlined'
+                          onClick={() => remove(index)}
+                        >
+                          Cancel
+                        </Button>
+                      )}
                     </Box>
                   </div>
                 ))}
@@ -500,9 +508,15 @@ export default function DeveloperExperience() {
                       >
                         Save
                       </Button>
-                      <Button color='error' variant='outlined'>
-                        Cancel
-                      </Button>
+                      {index > 0 && (
+                        <Button
+                          color='error'
+                          variant='outlined'
+                          onClick={() => remove(index)}
+                        >
+                          Cancel
+                        </Button>
+                      )}
                     </Box>
                   </div>
                 ))}

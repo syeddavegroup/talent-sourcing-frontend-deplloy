@@ -13,11 +13,9 @@ const AWrapper = (props) => {
       <AHeader />
       <ANav />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Toolbar />
-        <Box sx={{ p: 1, minHeight: "100vh", borderRadius: 3 }}>
-          {props.children}
-        </Box>
+        <Box sx={{ p: 3, minHeight: "100vh" }}>{props.children}</Box>
       </Box>
     </Box>
   );
