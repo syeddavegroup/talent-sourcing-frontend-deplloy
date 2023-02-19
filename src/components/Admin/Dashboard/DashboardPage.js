@@ -1,6 +1,6 @@
 import React from "react";
 
-import DashboardCards from "./DashboardCards";
+import AllUsersCards from "../AllUsers/AllUsersCards";
 import DashboardTimeline from "./DashboardTimeline";
 import DashboardMembers from "./DashboardMembers";
 import { Box } from "@mui/material";
@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 const ADashboardPage = () => {
   return (
     <>
-      <DashboardCards />
+      <AllUsersCards />
       <Box
         sx={{
           display: "flex",

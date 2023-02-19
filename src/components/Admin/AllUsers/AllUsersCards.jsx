@@ -6,7 +6,7 @@ import DevelopersCard from "../Developers/DevelopersCard";
 import ClientsCard from "../Clients/ClientsCard";
 import VendorsCard from "../Vendors/VendorsCard";
 
-const DashboardCards = () => {
+const AllUsersCards = () => {
   return (
     <Box
       sx={{
@@ -24,4 +24,4 @@ const DashboardCards = () => {
   );
 };
 
-export default DashboardCards;
+export default AllUsersCards;

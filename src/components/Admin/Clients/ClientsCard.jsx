@@ -2,7 +2,7 @@ import React from "react";
 
 import { Box, Card, CardContent, Typography, CardMedia } from "@mui/material";
 
-import card2Img from "../../../assets/Admin/Dashboard/card2.png";
+import card2Img from "../../../assets/Admin/card2.png";
 
 const ClientsCard = () => {
   return (

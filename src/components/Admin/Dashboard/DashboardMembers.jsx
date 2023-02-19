@@ -16,12 +16,14 @@ import {
   Stack,
 } from "@mui/material";
 
-import { members } from "../../../data/adminDashboard";
+import DUMMY_USERS from "../../../data/dummyUsers";
 
-const DashboardMembers = () => {
+const DashboardDUMMY_USERS = () => {
   const [seeAll, setSeeAll] = useState(false);
 
-  const visibleMembers = !seeAll ? [...members].slice(0, 6) : [...members];
+  const visibleDUMMY_USERS = !seeAll
+    ? [...DUMMY_USERS].slice(0, 5)
+    : [...DUMMY_USERS].slice(0, 10);
 
   function toggleSeeAll() {
     setSeeAll((prev) => {
@@ -52,7 +54,7 @@ const DashboardMembers = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleMembers.map((item) => (
+            {visibleDUMMY_USERS.map((item) => (
               <TableRow key={item.id}>
                 <TableCell sx={{ border: 0, display: "flex" }}>
                   <Avatar
@@ -95,4 +97,4 @@ const DashboardMembers = () => {
   );
 };
 
-export default DashboardMembers;
+export default DashboardDUMMY_USERS;

@@ -11,7 +11,7 @@ import {
 } from "@mui/lab";
 import { Typography, Box, Divider, Stack, Button } from "@mui/material";
 
-import { timeline } from "../../../data/adminDashboard";
+import timeline from "../../../data/timelineData";
 
 const DashboardTimeline = () => {
   const [seeAll, setSeeAll] = useState(false);

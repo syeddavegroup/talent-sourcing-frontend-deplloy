@@ -8,7 +8,7 @@ import DevelopersTable from "./DevelopersTable";
 const DevelopersPage = () => {
   return (
     <Box>
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center" mb={4}>
         <DevelopersCard />
       </Box>
 
