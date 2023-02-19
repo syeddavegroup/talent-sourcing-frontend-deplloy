@@ -1,7 +1,11 @@
 import React from "react";
 
+import TableLayout from "../Layouts/TableLayout";
+
+import DUMMY_USERS from "../../../data/dummyUsers";
+
 const AllUsersTable = () => {
-  return <div>AllUsersTable</div>;
+  return <TableLayout users={DUMMY_USERS} />;
 };
 
 export default AllUsersTable;

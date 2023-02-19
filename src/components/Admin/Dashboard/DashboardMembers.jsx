@@ -11,12 +11,12 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  CircularProgress,
   Avatar,
   Stack,
 } from "@mui/material";
 
 import DUMMY_USERS from "../../../data/dummyUsers";
+import CustomProgress from "../../UI/CustomProgress";
 
 const DashboardDUMMY_USERS = () => {
   const [seeAll, setSeeAll] = useState(false);
@@ -71,12 +71,9 @@ const DashboardDUMMY_USERS = () => {
                 </TableCell>
 
                 <TableCell align="center" sx={{ border: 0 }}>
-                  <CircularProgress
-                    variant="determinate"
+                  <CustomProgress
                     value={item.progress}
                     color={item.progressColor}
-                    size={30}
-                    thickness={5}
                   />
                 </TableCell>
               </TableRow>

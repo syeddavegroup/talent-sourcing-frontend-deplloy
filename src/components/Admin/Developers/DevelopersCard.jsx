@@ -1,45 +1,21 @@
 import React from "react";
 
-import { Box, Card, CardContent, Typography, CardMedia } from "@mui/material";
-
 import card1Img from "../../../assets/Admin/card1.png";
 
+import CustomCard from "../Layouts/CustomCard";
+
+import DUMMY_USERS from "../../../data/dummyUsers";
+
 const DevelopersCard = () => {
+  const developers = DUMMY_USERS.filter((user) =>
+    user.role.toLowerCase().includes("developer")
+  );
   return (
-    <Card
-      sx={{
-        display: "flex",
-        width: 300,
-        maxWidth: 300,
-        maxHeight: 200,
-        border: 1,
-        borderRadius: 3,
-        borderColor: "lightGrey",
-      }}
-      elevation={0}
-    >
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography variant="h6" noWrap>
-            Total Developers
-          </Typography>
-          <Typography
-            variant="h4"
-            fontWeight="bolder"
-            color="black"
-            marginY={3}
-          >
-            400
-          </Typography>
-        </CardContent>
-      </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: "100%", objectFit: "contain" }}
-        image={card1Img}
-        alt="Illustration1"
-      />
-    </Card>
+    <CustomCard
+      heading="Total Developers"
+      image={card1Img}
+      quantity={developers.length}
+    />
   );
 };
 
