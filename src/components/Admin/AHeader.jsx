@@ -19,9 +19,9 @@ const AHeader = () => {
       color="inherit"
       sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, boxShadow: "none" }}
     >
-      <Toolbar>
+      <Toolbar sx={{ display: "flex", gap: 3 }}>
         <Typography variant="h5" noWrap fontWeight="bold" color="blue">
-          <Link href="/">D-Community</Link>
+          <Link href="/">T-Sourcing</Link>
         </Typography>
 
         <TextField
@@ -36,8 +36,8 @@ const AHeader = () => {
           }}
           sx={{
             width: "100%",
-            maxWidth: 400,
-            marginLeft: " 140px",
+            maxWidth: 300,
+            marginX: "auto",
             backgroundColor: "customGray.lightGray",
           }}
         />
