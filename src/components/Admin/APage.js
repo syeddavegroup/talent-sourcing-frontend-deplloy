@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import AWrapper from "../../components/Admin/Layout/AWrapper";
+import AWrapper from "./Layouts/AWrapper";
 
 const APage = () => {
   return (
