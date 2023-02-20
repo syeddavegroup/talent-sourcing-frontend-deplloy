@@ -1,31 +1,36 @@
 import { Routes, Route } from "react-router-dom";
 
-import LandingPage from "./components/Landing Page/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 // Admin pages
-import APage from "./components/Admin/APage";
-import ADashboardPage from "./components/Admin/Dashboard/DashboardPage";
-import AAllUsersPage from "./components/Admin/AllUsers/AllUsersPage";
-import AClientsPage from "./components/Admin/Clients/ClientsPage";
-import ADevelopersPage from "./components/Admin/Developers/DevelopersPage";
-import AVendorsPage from "./components/Admin/Vendors/VendorsPage";
-import ASettingsPage from "./components/Admin/Settings/SettingsPage";
+import APage from "./components/Users/Admin/APage";
+import ADashboardPage from "./components/Users/Admin/Dashboard/DashboardPage";
+import AAllUsersPage from "./components/Users/Admin/AllUsers/AllUsersPage";
+import AClientsPage from "./components/Users/Admin/Clients/ClientsPage";
+import ADevelopersPage from "./components/Users/Admin/Developers/DevelopersPage";
+import AVendorsPage from "./components/Users/Admin/Vendors/VendorsPage";
+import ASettingsPage from "./components/Users/Admin/Settings/SettingsPage";
 
 // client pages
-import ClientOnBoarding from "./components/clientOnboarding/clientPage";
+import CPage from "./components/Users/Client/CPage";
+import COnboardingPage from "./components/Users/Client/Onboarding/OnboardingPage";
+import CSettingsPage from "./components/Users/Client/Settings/SettingsPage";
 
-//Developer pages
-import DeveloperOnBoarding from "./components/developerOnboarding/developerPage";
+// developer pages
+import DPage from "./components/Users/Developer/DPage";
+import DOnboardingPage from "./components/Users/Developer/Onboarding/OnboardingPage";
+import DSettingsPage from "./components/Users/Developer/Settings/SettingsPage";
 
-//vendor pages
-import VendorOnBoarding from "./components/vendorOnboarding/vendorPage";
+// vendor pages
+import VPage from "./components/Users/Vendor/VPage";
+import VOnboardingPage from "./components/Users/Vendor/Onboarding/OnboardingPage";
+import VSettingsPage from "./components/Users/Vendor/Settings/SettingsPage";
 
 function App() {
   return (
     <Routes>
       {/* landingpage routes */}
       <Route path="/" element={<LandingPage />} />
-
       {/* admin routes */}
       <Route path="admin" element={<APage />}>
         <Route path="dashboard" element={<ADashboardPage />} />
@@ -36,9 +41,23 @@ function App() {
         <Route path="settings" element={<ASettingsPage />} />
       </Route>
 
-      <Route path="/developer/onBoarding" element={<DeveloperOnBoarding />} />
-      <Route path="/client/onBoarding" element={<ClientOnBoarding />} />
-      <Route path="/vendor/onBoarding" element={<VendorOnBoarding />} />
+      {/* client routes */}
+      <Route path="client" element={<CPage />}>
+        <Route path="onboarding" element={<COnboardingPage />} />
+        <Route path="settings" element={<CSettingsPage />} />
+      </Route>
+
+      {/* developer routes */}
+      <Route path="developer" element={<DPage />}>
+        <Route path="onboarding" element={<DOnboardingPage />} />
+        <Route path="settings" element={<DSettingsPage />} />
+      </Route>
+
+      {/* vendor routes */}
+      <Route path="vendor" element={<VPage />}>
+        <Route path="onboarding" element={<VOnboardingPage />} />
+        <Route path="settings" element={<VSettingsPage />} />
+      </Route>
     </Routes>
   );
 }
