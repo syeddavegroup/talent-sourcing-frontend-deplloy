@@ -20,6 +20,7 @@ import CSettingsPage from "./components/Users/Client/Settings/SettingsPage";
 import DPage from "./components/Users/Developer/DPage";
 import DOnboardingPage from "./components/Users/Developer/Onboarding/OnboardingPage";
 import DSettingsPage from "./components/Users/Developer/Settings/SettingsPage";
+import FeedPage from "./components/Users/Developer/Feed/FeedPage";
 
 // vendor pages
 import VPage from "./components/Users/Vendor/VPage";
@@ -51,6 +52,7 @@ function App() {
       <Route path="developer" element={<DPage />}>
         <Route path="onboarding" element={<DOnboardingPage />} />
         <Route path="settings" element={<DSettingsPage />} />
+        <Route path="feed" element={<FeedPage />} />
       </Route>
 
       {/* vendor routes */}

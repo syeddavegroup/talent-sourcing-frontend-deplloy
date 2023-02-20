@@ -71,6 +71,10 @@ export default function DeveloperPersonalInfo() {
 
   const [state, setState] = useState([]);
 
+  function saveChanges() {
+    // api call here
+  }
+
   const onChange = (file) => {
     const reader = new FileReader();
     const { files } = file.target;

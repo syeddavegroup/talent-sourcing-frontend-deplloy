@@ -48,6 +48,12 @@ export const developerNavLinks = [
     icon: <SettingsIcon />,
     path: "/developer/settings",
   },
+  {
+    id: 3,
+    name: "Feed",
+    icon: <SettingsIcon />,
+    path: "/developer/feed",
+  },
 ];
 
 export const vendorNavLinks = [
