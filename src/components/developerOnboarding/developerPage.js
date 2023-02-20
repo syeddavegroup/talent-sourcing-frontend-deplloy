@@ -23,7 +23,7 @@ const Tab = styled(MuiTab)(({ theme }) => ({
     minWidth: 100,
   },
   [theme.breakpoints.down('sm')]: {
-    minWidth: 67,
+    width: 67,
   },
 }));
 
@@ -32,7 +32,9 @@ const TabName = styled('span')(({ theme }) => ({
   fontSize: '0.875rem',
   marginLeft: theme.spacing(2.4),
   [theme.breakpoints.down('md')]: {
-    display: 'none',
+    // display: 'none',
+    marginLeft: theme.spacing(0),
+    fontSize: '0.7rem',
   },
 }));
 

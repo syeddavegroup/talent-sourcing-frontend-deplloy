@@ -30,9 +30,10 @@ export default function DeveloperExperience() {
       validationSchema={developerExperienceValidation}
       validateOnChange={true}
       validateOnBlur={true}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         // same shape as initial values
         console.log(values);
+        resetForm({ values: '' });
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur }) => (

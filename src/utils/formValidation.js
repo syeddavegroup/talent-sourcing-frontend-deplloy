@@ -5,7 +5,7 @@ export const developerPersonalInformationValidation = Yup.object().shape({
   personalInformation: Yup.object().shape({
     fullName: Yup.string().required('Required'),
     email: Yup.string().email('Invalid Email').required('Required'),
-    mobileNumber: Yup.string()
+    mobile: Yup.string()
       .min(10, 'must be 10 digits')
       .max(10, 'must be 10 digits')
       .required('Required'),

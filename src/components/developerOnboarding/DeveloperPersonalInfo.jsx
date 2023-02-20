@@ -30,6 +30,7 @@ import { styled } from '@mui/material/styles';
 import { Checkbox, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { developerPersonalInformationValidation } from '../../utils/formValidation';
+import { developerPersonalAPI } from '../../services/developerFormApi';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -94,6 +95,7 @@ export default function DeveloperPersonalInfo() {
   //     value: state.id,
   //     ...state,
   //   }));
+  console.log(process.env.REACT_APP_API_URL);
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
@@ -141,22 +143,23 @@ export default function DeveloperPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
-          profileImage: '',
+          image: '',
           fullName: '',
           email: '',
-          mobileNumber: '',
+          mobile: '',
           country: '',
           state: '',
           city: '',
           headline: '',
         },
       }}
-      // validationSchema={developerPersonalInformationValidation}
+      validationSchema={developerPersonalInformationValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.personalInformation);
+        developerPersonalAPI(values.personalInformation);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, setValues }) => (
@@ -181,7 +184,7 @@ export default function DeveloperPersonalInfo() {
                       <input
                         hidden
                         type='file'
-                        name='personalInformation.profileImage'
+                        name='personalInformation.image'
                         onChange={handleChange}
                         accept='image/png, image/jpeg'
                         id='account-settings-upload-image'
@@ -258,25 +261,25 @@ export default function DeveloperPersonalInfo() {
                   <TextField
                     fullWidth
                     type='number'
-                    id='personalInformation.mobileNumber'
-                    name='personalInformation.mobileNumber'
+                    id='personalInformation.mobile'
+                    name='personalInformation.mobile'
                     label='Mobile'
                     placeholder='99999XXXXXXX'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.mobile &&
                       Boolean(
                         errors.personalInformation &&
-                          errors.personalInformation.mobileNumber
+                          errors.personalInformation.mobile
                       )
                     }
                     helperText={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.mobile &&
                       errors.personalInformation &&
-                      errors.personalInformation.mobileNumber
+                      errors.personalInformation.mobile
                     }
                   />
                 </Grid>
@@ -308,7 +311,9 @@ export default function DeveloperPersonalInfo() {
                       }
                     >
                       {country.map((cont) => (
-                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                        <MenuItem key={cont.isoCode} value={cont.value}>
+                          {cont.value}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
@@ -339,9 +344,9 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.state
                       }
                     >
-                      {state.map((cont) => (
-                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
-                      ))}
+                      <MenuItem value={'10'}>India</MenuItem>
+                      <MenuItem value={'20'}>Germany</MenuItem>
+                      <MenuItem value={'30'}>United State</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -371,9 +376,9 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.city
                       }
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Germany</MenuItem>
-                      <MenuItem value={30}>United State</MenuItem>
+                      <MenuItem value={'10'}>India</MenuItem>
+                      <MenuItem value={'20'}>Germany</MenuItem>
+                      <MenuItem value={'30'}>United State</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
