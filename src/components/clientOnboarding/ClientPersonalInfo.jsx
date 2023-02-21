@@ -77,13 +77,6 @@ export default function ClientPersonalInfo() {
     ...country,
   }));
 
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.id,
-  //     ...state,
-  //   }));
-
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     displayValue: `${country.name} - ${country.isoCode}`,
@@ -97,12 +90,7 @@ export default function ClientPersonalInfo() {
 
   useEffect(() => {
     setCountry(countryData);
-  }, [countryData]);
-  console.log(country);
-
-  // console.log(country);
-
-  // console.log(stateData);
+  }, []);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
@@ -111,25 +99,11 @@ export default function ClientPersonalInfo() {
       ...city,
     }));
 
-  // country api called
-  // useEffect(() => {
-  //   const getCountry = async () => {
-  //     const res = await fetch('https://api.countrystatecity.in/v1/countries'
-  //
-  //     const countryList = await res.json()
-  //     setCountry(countryList)
-  //   }
-
-  //   getCountry()
-  // }, [])
-
-  // console.log(country);
-
   return (
     <Formik
       initialValues={{
         personalInformation: {
-          profileImage: '',
+          image: '',
           fullName: '',
           email: '',
           mobileNumber: '',
@@ -153,7 +127,6 @@ export default function ClientPersonalInfo() {
         touched,
         handleChange,
         handleBlur,
-        setValues,
         handleSubmit,
       }) => (
         <form onSubmit={handleSubmit}>
@@ -177,7 +150,7 @@ export default function ClientPersonalInfo() {
                       <input
                         hidden
                         type='file'
-                        name='personalInformation.profileImage'
+                        name='personalInformation.image'
                         onChange={handleChange}
                         accept='image/png, image/jpeg'
                         id='account-settings-upload-image'
@@ -285,6 +258,7 @@ export default function ClientPersonalInfo() {
                       id='personalInformation.country'
                       name='personalInformation.country'
                       label='Country'
+                      defaultValue=''
                       // value={selectedCountry}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -317,6 +291,7 @@ export default function ClientPersonalInfo() {
                     <InputLabel id='state'>State</InputLabel>
                     <Select
                       labelId='state'
+                      defaultValue=''
                       id='personalInformation.state'
                       name='personalInformation.state'
                       label='State'
@@ -349,6 +324,7 @@ export default function ClientPersonalInfo() {
                     <InputLabel id='city'>City</InputLabel>
                     <Select
                       labelId='city'
+                      defaultValue=''
                       id='personalInformation.city'
                       name='personalInformation.city'
                       label='City'

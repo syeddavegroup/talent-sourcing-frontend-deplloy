@@ -1,17 +1,17 @@
-export const developerPersonalAPI = async (data) => {
-  const res = await fetch(
-    `${process.env.REACT_APP_API_URL}/api/v1/developer-on-boarding/personalInfo`,
-    {
-      mode: 'no-cors',
-      method: 'post',
-      headers: {
-        // Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }
-  );
+import axios from 'axios';
 
-  const resData = await res.json();
-  console.log(resData);
+export const developerPersonalAPI = async (data) => {
+  axios
+    .post(
+      `http://localhost:3000/api/v1/developer-on-boarding/personalInfo`,
+      JSON.stringify(data),
+      {
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    .then((res) => res)
+    .catch((err) => console.log(err.response.data.message));
 };

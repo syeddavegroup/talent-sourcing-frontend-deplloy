@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import {
   Box,
   Card,
@@ -17,7 +17,7 @@ import UploadLogo from '../../assets/upload-logo.svg';
 import RegisterLogo from '../../assets/registerDoc-logo.svg';
 import { clientCompanyInfoValidation } from '../../utils/formValidation';
 
-import AddIcon from '@mui/icons-material/Add';
+import UploadIcon from '../../assets/upload-button-icon.svg';
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -384,6 +384,70 @@ export default function ClientCompanyInfo() {
                 </Box>
               </Grid>
             </Grid>
+
+            <Grid>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                  margin: '1rem 0',
+                }}
+              >
+                <Box>Document Type</Box>
+                <Box sx={{ color: '#79767E' }}>Registration Document</Box>
+              </Box>
+              <Typography>Description</Typography>
+              <TextField
+                fullWidth
+                id='companyName'
+                multiline
+                rows={10}
+                name={`companyInformation.aboutAgency`}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={
+                  touched.companyInformation &&
+                  touched.companyInformation.aboutAgency &&
+                  Boolean(
+                    errors.companyInformation &&
+                      errors.companyInformation.aboutAgency
+                  )
+                }
+                helperText={
+                  touched.companyInformation &&
+                  touched.companyInformation.aboutAgency &&
+                  errors.companyInformation &&
+                  errors.companyInformation.aboutAgency
+                }
+              />
+            </Grid>
+            <Box
+              sx={{
+                padding: '1rem 0',
+                display: 'flex',
+                alignItems: 'flex-end',
+                gap: '1rem',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <Button
+                sx={{
+                  backgroundColor: '#03308C',
+                  textTransform: 'capitalize',
+                  display: 'flex',
+                  gap: '1rem',
+                }}
+                type='submit'
+                variant='contained'
+              >
+                <img src={UploadIcon} alt='' />
+                upload
+              </Button>
+              {/* <Button color='error' variant='outlined' >
+                Cancel
+              </Button> */}
+            </Box>
           </Card>
         </Form>
       )}

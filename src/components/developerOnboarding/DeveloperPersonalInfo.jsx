@@ -95,7 +95,6 @@ export default function DeveloperPersonalInfo() {
   //     value: state.id,
   //     ...state,
   //   }));
-  console.log(process.env.REACT_APP_API_URL);
 
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
@@ -260,7 +259,7 @@ export default function DeveloperPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type='number'
+                    type='text'
                     id='personalInformation.mobile'
                     name='personalInformation.mobile'
                     label='Mobile'
@@ -289,6 +288,7 @@ export default function DeveloperPersonalInfo() {
                     <InputLabel id='country'>Country</InputLabel>
                     <Select
                       labelId='demo-simple-select-label'
+                      defaultValue=''
                       id='personalInformation.country'
                       name='personalInformation.country'
                       label='Country'
@@ -324,6 +324,7 @@ export default function DeveloperPersonalInfo() {
                     <InputLabel id='state'>State</InputLabel>
                     <Select
                       labelId='state'
+                      defaultValue=''
                       id='personalInformation.state'
                       name='personalInformation.state'
                       label='State'
@@ -356,6 +357,7 @@ export default function DeveloperPersonalInfo() {
                     <InputLabel id='city'>City</InputLabel>
                     <Select
                       labelId='city'
+                      defaultValue=''
                       id='personalInformation.city'
                       name='personalInformation.city'
                       label='City'
@@ -389,6 +391,7 @@ export default function DeveloperPersonalInfo() {
                     type='text'
                     id='personalInformation.headline'
                     name='personalInformation.headline'
+                    onChange={handleChange}
                     label='Headline'
                     placeholder='Write about yourself'
                   />

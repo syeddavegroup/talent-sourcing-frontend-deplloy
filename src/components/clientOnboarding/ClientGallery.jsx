@@ -1,12 +1,8 @@
 import React from 'react';
 import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
 import { Box, Card, TextField, Typography, Grid, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '../../assets/cancel-icon.svg';
 import PauseIcon from '../../assets/pause-icon.svg';
-
-import { developerValidation } from '../../utils/formValidation';
-import { borderRadius } from '@mui/system';
 
 export default function ClientGallery() {
   return (
@@ -14,7 +10,6 @@ export default function ClientGallery() {
       initialValues={{
         gallery: [],
       }}
-      // validationSchema={developerValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
