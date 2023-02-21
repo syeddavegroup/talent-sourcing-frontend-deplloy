@@ -19,6 +19,7 @@ import { styled } from '@mui/material/styles';
 import { Checkbox, MenuItem } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { clientPersonalValidation } from '../../utils/formValidation';
+import { clientPersonalAPI } from '../../services/clientFormApi';
 
 const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
@@ -110,7 +111,7 @@ export default function ClientPersonalInfo() {
           country: '',
           state: '',
           city: '',
-          headline: '',
+          designation: '',
         },
       }}
       validationSchema={clientPersonalValidation}
@@ -119,6 +120,7 @@ export default function ClientPersonalInfo() {
       onSubmit={(values) => {
         // same shape as initial values
         console.log(values);
+        clientPersonalAPI(values.personalInformation);
       }}
     >
       {({
@@ -180,7 +182,7 @@ export default function ClientPersonalInfo() {
                     fullWidth
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    label='First Name'
+                    label='Full Name'
                     error={
                       touched.personalInformation &&
                       touched.personalInformation.fullName &&
@@ -356,10 +358,10 @@ export default function ClientPersonalInfo() {
                   <TextField
                     fullWidth
                     type='text'
-                    id='personalInformation.headline'
-                    name='personalInformation.headline'
+                    id='personalInformation.designation'
+                    name='personalInformation.designation'
                     onChange={handleChange}
-                    label='Headline'
+                    label='Designation'
                     placeholder='Write about yourself'
                   />
                 </Grid>
