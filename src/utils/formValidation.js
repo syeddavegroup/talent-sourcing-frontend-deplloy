@@ -19,26 +19,30 @@ export const developerExperienceValidation = Yup.object().shape({
   experience: Yup.array().of(
     Yup.object().shape({
       companyName: Yup.string().required('Required'),
-      position: Yup.string().required('Required'),
-      dateOfJoining: Yup.string().required('Required'),
-      workDescription: Yup.string().required('Required'),
-      usedSkills: Yup.string().required('Required'),
-    })
-  ),
-  projects: Yup.array().of(
-    Yup.object().shape({
-      title: Yup.string().required('Required'),
-      url: Yup.string().matches(
-        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        'Invalid URL'
-      ),
+      designation: Yup.string().required('Required'),
+      startDate: Yup.string().required('Required'),
+      endDate: Yup.string().required('Required'),
+      location: Yup.string().required('Required'),
+      jobType: Yup.string().required('Required'),
       description: Yup.string().required('Required'),
-      duration: Yup.string().required('Required'),
     })
   ),
-  licensesAndCertification: Yup.object().shape({
-    name: Yup.string().required('Required'),
-  }),
+  // licensesAndCertification: Yup.array().of(
+  //   Yup.object().shape({
+  //     name: Yup.string().required('Required'),
+  //   })
+  // ),
+  // projects: Yup.array().of(
+  //   Yup.object().shape({
+  //     title: Yup.string().required('Required'),
+  //     url: Yup.string().matches(
+  //       /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+  //       'Invalid URL'
+  //     ),
+  //     description: Yup.string().required('Required'),
+  //     duration: Yup.string().required('Required'),
+  //   })
+  // ),
 });
 
 export const developerSkillValidation = Yup.object().shape({

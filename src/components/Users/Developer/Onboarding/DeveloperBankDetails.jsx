@@ -125,13 +125,13 @@ export default function DeveloperBankDetails() {
               sx={{
                 padding: '1rem 0',
                 display: 'flex',
-                alignItems: 'flex-end',
+                alignItems: 'center',
                 gap: '1rem',
-                justifyContent: 'flex-end',
+                justifyContent: 'center',
               }}
             >
               <Button
-                sx={{ backgroundColor: '#03308C' }}
+                sx={{ backgroundColor: '#03308C', padding: '.3rem 3rem' }}
                 type='submit'
                 variant='contained'
               >

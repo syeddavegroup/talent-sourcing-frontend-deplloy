@@ -1,9 +1,20 @@
-import React from "react";
-import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
-import { Box, Card, TextField, Typography, Grid, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import React from 'react';
+import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
+import {
+  Box,
+  Card,
+  TextField,
+  Typography,
+  Grid,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
-import { developerExperienceValidation } from "../../../../utils/formValidation";
+import { developerExperienceValidation } from '../../../../utils/formValidation';
+import MenuItem from '@mui/material/MenuItem';
 
 export default function DeveloperExperience() {
   return (
@@ -11,19 +22,29 @@ export default function DeveloperExperience() {
       initialValues={{
         experience: [
           {
-            companyName: "",
-            position: "",
-            dateOfJoining: "",
-            workDescription: "",
-            usedSkills: "",
+            companyName: '',
+            designation: '',
+            startDate: '',
+            endDate: '',
+            location: '',
+            jobType: '',
+            description: '',
           },
         ],
-        projects: [{ title: "", url: "", description: "", duration: "" }],
+        projects: [
+          {
+            projectName: '',
+            projectUrl: '',
+            startDate: '',
+            endDate: '',
+            description: '',
+          },
+        ],
         licensesAndCertification: [
           {
-            name: "",
-            issuingOrganization: "",
-            issueDate: "",
+            name: '',
+            issuingOrganization: '',
+            issueDate: '',
           },
         ],
       }}
@@ -38,47 +59,47 @@ export default function DeveloperExperience() {
     >
       {({ values, errors, touched, handleChange, handleBlur }) => (
         <Form>
-          <FieldArray name="experience">
+          <FieldArray name='experience'>
             {({ remove, push }) => (
-              <Card sx={{ margin: "1rem", padding: "1rem" }}>
+              <Card sx={{ margin: '1rem', padding: '1rem' }}>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginY: "1rem",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginY: '1rem',
                   }}
                 >
-                  <Typography variant="h4">Add Experience</Typography>
+                  <Typography variant='h4'>Add Experience</Typography>
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
                     }}
                     onClick={() =>
                       push({
-                        companyName: "",
-                        position: "",
-                        dateOfJoining: "",
-                        workDescription: "",
-                        usedSkills: "",
+                        companyName: '',
+                        position: '',
+                        dateOfJoining: '',
+                        workDescription: '',
+                        usedSkills: '',
                       })
                     }
                   >
-                    <AddIcon /> <Typography color={"#03308C"}>Add</Typography>
+                    <AddIcon /> <Typography color={'#03308C'}>Add</Typography>
                   </Box>
                 </Box>
 
                 {values.experience.map((_, index) => (
-                  <Box className="relative" key={index}>
+                  <Box className='relative' key={index}>
                     <Grid container spacing={5}>
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="companyName"
-                          label="Company Name"
+                          id='companyName'
+                          label='Company Name'
                           name={`experience[${index}].companyName`}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -102,24 +123,24 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="position"
-                          label="Position"
-                          name={`experience[${index}].position`}
+                          id='designation'
+                          label='Designation'
+                          name={`experience[${index}].designation`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
                             touched.experience &&
-                            touched.experience[index].position &&
+                            touched.experience[index].designation &&
                             Boolean(
                               errors.experience &&
-                                errors.experience[index].position
+                                errors.experience[index].designation
                             )
                           }
                           helperText={
                             touched.experience &&
-                            touched.experience[index].position &&
+                            touched.experience[index].designation &&
                             errors.experience &&
-                            errors.experience[index].position
+                            errors.experience[index].designation
                           }
                         />
                       </Grid>
@@ -127,24 +148,24 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="dateOfJoining"
-                          name={`experience[${index}].dateOfJoining`}
-                          type="date"
+                          id='startDate'
+                          name={`experience[${index}].startDate`}
+                          type='date'
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
                             touched.experience &&
-                            touched.experience[index].dateOfJoining &&
+                            touched.experience[index].startDate &&
                             Boolean(
                               errors.experience &&
-                                errors.experience[index].dateOfJoining
+                                errors.experience[index].startDate
                             )
                           }
                           helperText={
                             touched.experience &&
-                            touched.experience[index].dateOfJoining &&
+                            touched.experience[index].startDate &&
                             errors.experience &&
-                            errors.experience[index].dateOfJoining
+                            errors.experience[index].startDate
                           }
                         />
                       </Grid>
@@ -152,73 +173,139 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="workDescription"
-                          label="Work Experience"
-                          name={`experience[${index}].workDescription`}
+                          type='date'
+                          id='endDate'
+                          name={`experience[${index}].endDate`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
                             touched.experience &&
-                            touched.experience[index].workDescription &&
+                            touched.experience[index].endDate &&
                             Boolean(
                               errors.experience &&
-                                errors.experience[index].workDescription
+                                errors.experience[index].endDate
                             )
                           }
                           helperText={
                             touched.experience &&
-                            touched.experience[index].workDescription &&
+                            touched.experience[index].endDate &&
                             errors.experience &&
-                            errors.experience[index].workDescription
+                            errors.experience[index].endDate
                           }
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
+                        <FormControl fullWidth>
+                          <InputLabel id='location'>Location</InputLabel>
+                          <Select
+                            labelId='location'
+                            defaultValue=''
+                            // id={`experience[${index}].location`}
+                            name={`experience[${index}].location`}
+                            label='Location'
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            error={
+                              touched.experience &&
+                              touched.experience[index].location &&
+                              Boolean(
+                                errors.experience &&
+                                  errors.experience[index].location
+                              )
+                            }
+                            helperText={
+                              touched.experience &&
+                              touched.experience[index].location &&
+                              errors.experience &&
+                              errors.experience[index].location
+                            }
+                          >
+                            <MenuItem value={'10'}>India</MenuItem>
+                            <MenuItem value={'20'}>Germany</MenuItem>
+                            <MenuItem value={'30'}>United State</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <FormControl fullWidth>
+                          <InputLabel id='jobType'>JobType</InputLabel>
+                          <Select
+                            labelId='jobType'
+                            defaultValue=''
+                            id='jobType'
+                            name={`experience[${index}].jobType`}
+                            label='Location'
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            error={
+                              touched.experience &&
+                              touched.experience[index].jobType &&
+                              Boolean(
+                                errors.experience &&
+                                  errors.experience[index].jobType
+                              )
+                            }
+                            helperText={
+                              touched.experience &&
+                              touched.experience[index].jobType &&
+                              errors.experience &&
+                              errors.experience[index].jobType
+                            }
+                          >
+                            <MenuItem value={'Internship'}>Internship</MenuItem>
+                            <MenuItem value={'Job'}>Job</MenuItem>
+                            <MenuItem value={'Freelance'}>Freelance</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+
+                      <Grid item xs={12}>
                         <TextField
                           fullWidth
-                          id="usedSkills"
-                          label="Used Skills"
-                          name={`experience[${index}].usedSkills`}
+                          id='description'
+                          label='Description'
+                          name={`experience[${index}].description`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
                             touched.experience &&
-                            touched.experience[index].usedSkills &&
+                            touched.experience[index].description &&
                             Boolean(
                               errors.experience &&
-                                errors.experience[index].usedSkills
+                                errors.experience[index].description
                             )
                           }
                           helperText={
                             touched.experience &&
-                            touched.experience[index].usedSkills &&
+                            touched.experience[index].description &&
                             errors.experience &&
-                            errors.experience[index].usedSkills
+                            errors.experience[index].description
                           }
                         />
                       </Grid>
                     </Grid>
                     <Box
                       sx={{
-                        padding: "1rem 0",
-                        display: "flex",
-                        alignItems: "flex-end",
-                        gap: "1rem",
-                        justifyContent: "flex-end",
+                        padding: '1rem 0',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        gap: '1rem',
+                        justifyContent: 'flex-end',
                       }}
                     >
                       <Button
-                        sx={{ backgroundColor: "#03308C" }}
-                        type="submit"
-                        variant="contained"
+                        sx={{ backgroundColor: '#03308C' }}
+                        type='submit'
+                        variant='contained'
                       >
                         Save
                       </Button>
                       {index > 0 && (
                         <Button
-                          color="error"
-                          variant="outlined"
+                          color='error'
+                          variant='outlined'
                           onClick={() => remove(index)}
                         >
                           Cancel
@@ -233,49 +320,49 @@ export default function DeveloperExperience() {
 
           {/* Licenses & Certifications */}
 
-          <FieldArray name="licensesAndCertification">
+          <FieldArray name='licensesAndCertification'>
             {({ remove, push }) => (
-              <Card sx={{ margin: "1rem", padding: "1rem" }}>
+              <Card sx={{ margin: '1rem', padding: '1rem' }}>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginY: "1rem",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginY: '1rem',
                   }}
                 >
-                  <Typography variant="h4">
+                  <Typography variant='h4'>
                     Licenses & Certifications
                   </Typography>
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
                     }}
                     onClick={() =>
                       push({
-                        companyName: "",
-                        position: "",
-                        dateOfJoining: "",
-                        workDescription: "",
-                        usedSkills: "",
+                        companyName: '',
+                        position: '',
+                        dateOfJoining: '',
+                        workDescription: '',
+                        usedSkills: '',
                       })
                     }
                   >
-                    <AddIcon /> <Typography color={"#03308C"}>Add</Typography>
+                    <AddIcon /> <Typography color={'#03308C'}>Add</Typography>
                   </Box>
                 </Box>
 
                 {values.licensesAndCertification.map((_, index) => (
-                  <div className="relative" key={index}>
+                  <div className='relative' key={index}>
                     <Grid container spacing={5}>
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="certificateName"
-                          label="Name *"
+                          id='certificateName'
+                          label='Name *'
                           name={`licensesAndCertification[${index}].name`}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -299,9 +386,9 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="issuingOrganization"
+                          id='issuingOrganization'
                           name={`licensesAndCertification[${index}].issuingOrganization`}
-                          label="Issuing Organisation"
+                          label='Issuing Organisation'
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
@@ -328,9 +415,9 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="issueDate"
+                          id='issueDate'
                           name={`licensesAndCertification[${index}].issueDate`}
-                          type="date"
+                          type='date'
                           onChange={handleChange}
                           onBlur={handleBlur}
                           error={
@@ -353,8 +440,8 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="workDescription"
-                          label="Expiry Date"
+                          id='workDescription'
+                          label='Expiry Date'
                           name={`experience[${index}].workDescription`}
                         />
                       </Grid>
@@ -362,8 +449,8 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="usedSkills"
-                          label="Credential URL"
+                          id='usedSkills'
+                          label='Credential URL'
                           name={`experience[${index}].usedSkills`}
                         />
                       </Grid>
@@ -371,32 +458,32 @@ export default function DeveloperExperience() {
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="usedSkills"
-                          label="Credential ID"
+                          id='usedSkills'
+                          label='Credential ID'
                           name={`experience[${index}].usedSkills`}
                         />
                       </Grid>
                     </Grid>
                     <Box
                       sx={{
-                        padding: "1rem 0",
-                        display: "flex",
-                        alignItems: "flex-end",
-                        gap: "1rem",
-                        justifyContent: "flex-end",
+                        padding: '1rem 0',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        gap: '1rem',
+                        justifyContent: 'flex-end',
                       }}
                     >
                       <Button
-                        sx={{ backgroundColor: "#03308C" }}
-                        type="submit"
-                        variant="contained"
+                        sx={{ backgroundColor: '#03308C' }}
+                        type='submit'
+                        variant='contained'
                       >
                         Save
                       </Button>
                       {index > 0 && (
                         <Button
-                          color="error"
-                          variant="outlined"
+                          color='error'
+                          variant='outlined'
                           onClick={() => remove(index)}
                         >
                           Cancel
@@ -411,108 +498,108 @@ export default function DeveloperExperience() {
 
           {/* Project Details */}
 
-          <FieldArray name="projects">
+          <FieldArray name='projects'>
             {({ remove, push }) => (
-              <Card sx={{ margin: "1rem", padding: "1rem" }}>
+              <Card sx={{ margin: '1rem', padding: '1rem' }}>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginY: "1rem",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginY: '1rem',
                   }}
                 >
-                  <Typography variant="h4">Project Details</Typography>
+                  <Typography variant='h4'>Project Details</Typography>
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
                     }}
                     onClick={() =>
                       push({
-                        companyName: "",
-                        position: "",
-                        dateOfJoining: "",
-                        workDescription: "",
-                        usedSkills: "",
+                        projectName: '',
+                        projectUrl: '',
+                        startDate: '',
+                        endDate: '',
+                        description: '',
                       })
                     }
                   >
-                    <AddIcon /> <Typography color={"#03308C"}>Add</Typography>
+                    <AddIcon /> <Typography color={'#03308C'}>Add</Typography>
                   </Box>
                 </Box>
 
                 {values.projects.map((_, index) => (
-                  <div className="relative" key={index}>
+                  <div className='relative' key={index}>
                     <Grid container spacing={5}>
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="companyName"
-                          label="Project name"
-                          name={`experience[${index}].companyName`}
-                          type="text"
+                          id='projectName'
+                          label='Project name'
+                          name={`experience[${index}].projectName`}
+                          type='text'
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="position"
-                          label="Project URL"
-                          name={`experience[${index}].position`}
+                          id='projectUrl'
+                          label='Project URL'
+                          name={`experience[${index}].projectUrl`}
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="dateOfJoining"
-                          name={`experience[${index}].dateOfJoining`}
-                          type="date"
+                          id='startDate'
+                          name={`experience[${index}].startDate`}
+                          type='date'
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id="dateOfJoining"
-                          name={`experience[${index}].dateOfJoining`}
-                          type="date"
+                          id='endDate'
+                          name={`experience[${index}].endDate`}
+                          type='date'
                         />
                       </Grid>
 
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12}>
                         <TextField
                           fullWidth
-                          id="workDescription"
-                          label="Description"
-                          name={`experience[${index}].workDescription`}
+                          id='description'
+                          label='Description'
+                          name={`experience[${index}].description`}
                         />
                       </Grid>
                     </Grid>
                     <Box
                       sx={{
-                        padding: "1rem 0",
-                        display: "flex",
-                        alignItems: "flex-end",
-                        gap: "1rem",
-                        justifyContent: "flex-end",
+                        padding: '1rem 0',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        gap: '1rem',
+                        justifyContent: 'flex-end',
                       }}
                     >
                       <Button
-                        sx={{ backgroundColor: "#03308C" }}
-                        type="submit"
-                        variant="contained"
+                        sx={{ backgroundColor: '#03308C' }}
+                        type='submit'
+                        variant='contained'
                       >
                         Save
                       </Button>
                       {index > 0 && (
                         <Button
-                          color="error"
-                          variant="outlined"
+                          color='error'
+                          variant='outlined'
                           onClick={() => remove(index)}
                         >
                           Cancel

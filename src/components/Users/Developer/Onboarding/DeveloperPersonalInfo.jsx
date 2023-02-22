@@ -82,30 +82,25 @@ export default function DeveloperPersonalInfo() {
     ...country,
   }));
 
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.id,
-  //     ...state,
-  //   }));
-
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     displayValue: `${country.name} - ${country.isoCode}`,
     isoCode: country.isoCode,
   }));
+  useEffect(() => {
+    const stateData = State.getStatesOfCountry(countryData.isoCode).map(
+      (state) => ({
+        value: state.name,
+        displayValue: `${state.name} - ${state.isoCode}`,
+      })
+    );
 
-  const stateData = State.getStatesOfCountry('IN').map((state) => ({
-    value: state.name,
-    displayValue: `${state.name} - ${state.isoCode}`,
-  }));
-
+    console.log(stateData);
+  }, [countryData]);
   useEffect(() => {
     setCountry(countryData);
   }, []);
   // console.log(country);
-
-  // console.log(stateData);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
