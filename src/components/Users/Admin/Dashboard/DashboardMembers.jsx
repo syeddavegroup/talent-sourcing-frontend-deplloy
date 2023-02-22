@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 
 import DUMMY_USERS from "../../../../data/dummyUsers";
-import CustomProgress from "../../../UI/CustomProgress";
+import CustomProgress from "../../../UI/Others/CustomProgress";
 
 const DashboardDUMMY_USERS = () => {
   const [seeAll, setSeeAll] = useState(false);

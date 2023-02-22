@@ -6,6 +6,8 @@ import GroupIcon from "@mui/icons-material/Group";
 import HailIcon from "@mui/icons-material/Hail";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
 
+import { LoginOutlined, UnorderedListOutlined } from "@ant-design/icons";
+
 export const adminNavLinks = [
   { id: 1, name: "Dashboard", icon: <InboxIcon />, path: "/admin/dashboard" },
   {
@@ -17,6 +19,13 @@ export const adminNavLinks = [
   { id: 5, name: "Developers", icon: <CodeIcon />, path: "/admin/developers" },
   { id: 4, name: "Clients", icon: <HailIcon />, path: "/admin/clients" },
   { id: 3, name: "Vendors", icon: <GroupIcon />, path: "/admin/vendors" },
+  {
+    id: 6,
+    name: "Register",
+    icon: <UnorderedListOutlined />,
+    path: "/auth/register",
+  },
+  { id: 6, name: "Login", icon: <LoginOutlined />, path: "/auth/login" },
   { id: 6, name: "Settings", icon: <SettingsIcon />, path: "/admin/settings" },
 ];
 

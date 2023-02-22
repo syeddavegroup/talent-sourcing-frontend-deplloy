@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import {
   Stack,
@@ -10,13 +11,15 @@ import {
   DialogContent,
   TextField,
   Divider,
+  Typography,
 } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-const UserActions = (props) => {
-  const [openModal, setOpenModal] = useState(false);
+const TableActions = (props) => {
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const [values, setValues] = useState({
     name: props.user.name,
     email: props.user.email,
@@ -25,11 +28,44 @@ const UserActions = (props) => {
     progress: props.user.progress,
   });
 
-  function handleClose() {
-    setOpenModal(false);
+  const { name, email, jobTitle, role, progress } = values;
+
+  function handleSave() {
+    axios
+      .put(`https://testing2-ihn1.onrender.com/users/${props.user.id}`, {
+        name,
+        email,
+        jobTitle,
+        role,
+        progress,
+      })
+      .then(function (response) {
+        // handle success
+        setOpenEdit(false);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
   }
-  function handleOpen() {
-    setOpenModal(true);
+
+  function handleDelete() {
+    axios
+      .delete(`https://testing2-ihn1.onrender.com/users/${props.user.id}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
   }
 
   const handleChange = (prop) => (event) => {
@@ -38,14 +74,14 @@ const UserActions = (props) => {
 
   return (
     <Stack direction="row">
-      <IconButton onClick={handleOpen}>
+      <IconButton onClick={() => setOpenEdit(true)}>
         <EditIcon />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={() => setOpenDelete(true)}>
         <DeleteOutlineIcon color="error" />
       </IconButton>
 
-      <Dialog maxWidth="md" open={openModal} onClose={handleClose}>
+      <Dialog maxWidth="md" open={openEdit} onClose={() => setOpenEdit(true)}>
         <DialogTitle id="responsive-dialog-title">
           <EditIcon /> Edit
         </DialogTitle>
@@ -98,11 +134,37 @@ const UserActions = (props) => {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button autoFocus onClick={() => setOpenEdit(false)}>
             Cancel
           </Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleSave} autoFocus>
             Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        maxWidth="md"
+        open={openDelete}
+        onClose={() => setOpenDelete(true)}
+      >
+        <DialogTitle id="responsive-dialog-title">
+          <EditIcon /> Delete
+        </DialogTitle>
+        <Divider />
+        <DialogContent>
+          <Typography>Name : {props.user.name}</Typography>
+          <Typography>Email : {props.user.email}</Typography>
+          <Typography>Job Title : {props.user.jobTitle}</Typography>
+          <Typography>Role : {props.user.role}</Typography>
+          <Typography>Progress : {props.user.progress}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={() => setOpenDelete(false)}>
+            Cancel
+          </Button>
+          <Button color="error" onClick={handleDelete} autoFocus>
+            Delete
           </Button>
         </DialogActions>
       </Dialog>
@@ -110,4 +172,4 @@ const UserActions = (props) => {
   );
 };
 
-export default UserActions;
+export default TableActions;

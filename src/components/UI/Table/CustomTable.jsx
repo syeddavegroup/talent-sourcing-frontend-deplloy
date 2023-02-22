@@ -3,8 +3,8 @@ import React from "react";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import UserActions from "./UserActions";
-import CustomProgress from "./CustomProgress";
+import TableActions from "./TableActions";
+import CustomProgress from "../Others/CustomProgress";
 
 const CustomTable = (props) => {
   const columns = [
@@ -73,7 +73,7 @@ const CustomTable = (props) => {
       align: "center",
       headerAlign: "center",
       maxWidth: 150,
-      renderCell: (params) => <UserActions user={params.row} />,
+      renderCell: (params) => <TableActions user={params.row} />,
     },
   ];
 

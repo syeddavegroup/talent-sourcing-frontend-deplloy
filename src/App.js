@@ -11,6 +11,12 @@ import ADevelopersPage from "./components/Users/Admin/Developers/DevelopersPage"
 import AVendorsPage from "./components/Users/Admin/Vendors/VendorsPage";
 import ASettingsPage from "./components/Users/Admin/Settings/SettingsPage";
 
+//auth pages
+import LoginPage from "./components/Auth/Login";
+import RegisterPage from "./components/Auth/Register";
+import ForgotPasswordPage from "./components/Auth/ForgotPassword";
+import ResetPasswordPage from "./components/Auth/ResetPassword";
+
 // client pages
 import CPage from "./components/Users/Client/CPage";
 import COnboardingPage from "./components/Users/Client/Onboarding/OnboardingPage";
@@ -32,6 +38,7 @@ function App() {
     <Routes>
       {/* landingpage routes */}
       <Route path="/" element={<LandingPage />} />
+
       {/* admin routes */}
       <Route path="admin" element={<APage />}>
         <Route path="dashboard" element={<ADashboardPage />} />
@@ -40,6 +47,14 @@ function App() {
         <Route path="clients" element={<AClientsPage />} />
         <Route path="vendors" element={<AVendorsPage />} />
         <Route path="settings" element={<ASettingsPage />} />
+      </Route>
+
+      {/* authentication routes */}
+      <Route path="auth">
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="forgotPassword" element={<ForgotPasswordPage />} />
+        <Route path="resetPassword" element={<ResetPasswordPage />} />
       </Route>
 
       {/* client routes */}
