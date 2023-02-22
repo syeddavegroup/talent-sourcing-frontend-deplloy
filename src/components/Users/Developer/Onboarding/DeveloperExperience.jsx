@@ -31,6 +31,16 @@ export default function DeveloperExperience() {
             description: '',
           },
         ],
+        licensesAndCertification: [
+          {
+            name: '',
+            issuingOrganization: '',
+            issueDate: '',
+            expiryDate: '',
+            credentialUrl: '',
+            credentialId: '',
+          },
+        ],
         projects: [
           {
             projectName: '',
@@ -40,21 +50,13 @@ export default function DeveloperExperience() {
             description: '',
           },
         ],
-        licensesAndCertification: [
-          {
-            name: '',
-            issuingOrganization: '',
-            issueDate: '',
-          },
-        ],
       }}
       validationSchema={developerExperienceValidation}
       validateOnChange={true}
       validateOnBlur={true}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values) => {
         // same shape as initial values
         console.log(values);
-        resetForm({ values: '' });
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur }) => (
@@ -343,11 +345,12 @@ export default function DeveloperExperience() {
                     }}
                     onClick={() =>
                       push({
-                        companyName: '',
-                        position: '',
-                        dateOfJoining: '',
-                        workDescription: '',
-                        usedSkills: '',
+                        name: '',
+                        issuingOrganization: '',
+                        issueDate: '',
+                        expiryDate: '',
+                        credentialUrl: '',
+                        credentialId: '',
                       })
                     }
                   >
@@ -391,24 +394,6 @@ export default function DeveloperExperience() {
                           label='Issuing Organisation'
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          error={
-                            touched.licensesAndCertification &&
-                            touched.licensesAndCertification[index]
-                              .issuingOrganization &&
-                            Boolean(
-                              errors.licensesAndCertification &&
-                                errors.licensesAndCertification[index]
-                                  .issuingOrganization
-                            )
-                          }
-                          helperText={
-                            touched.licensesAndCertification &&
-                            touched.licensesAndCertification[index]
-                              .issuingOrganization &&
-                            errors.licensesAndCertification &&
-                            errors.licensesAndCertification[index]
-                              .issuingOrganization
-                          }
                         />
                       </Grid>
 
@@ -420,47 +405,37 @@ export default function DeveloperExperience() {
                           type='date'
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          error={
-                            touched.licensesAndCertification &&
-                            touched.licensesAndCertification[index].issueDate &&
-                            Boolean(
-                              errors.licensesAndCertification &&
-                                errors.licensesAndCertification[index].issueDate
-                            )
-                          }
-                          helperText={
-                            touched.licensesAndCertification &&
-                            touched.licensesAndCertification[index].issueDate &&
-                            errors.licensesAndCertification &&
-                            errors.licensesAndCertification[index].issueDate
-                          }
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id='workDescription'
-                          label='Expiry Date'
-                          name={`experience[${index}].workDescription`}
+                          id='expiryDate'
+                          name={`licensesAndCertification[${index}].expiryDate`}
+                          type='date'
+                          onChange={handleChange}
+                          onBlur={handleBlur}
                         />
                       </Grid>
 
                       <Grid item xs={12} md={6}>
                         <TextField
                           fullWidth
-                          id='usedSkills'
-                          label='Credential URL'
-                          name={`experience[${index}].usedSkills`}
-                        />
-                      </Grid>
-
-                      <Grid item xs={12} md={6}>
-                        <TextField
-                          fullWidth
-                          id='usedSkills'
+                          id='credentialId'
                           label='Credential ID'
-                          name={`experience[${index}].usedSkills`}
+                          name={`licensesAndCertification[${index}].credentialUrl`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                      </Grid>
+
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          fullWidth
+                          id='credentialId'
+                          label='Credential ID'
+                          name={`licensesAndCertification[${index}].credentialId`}
                         />
                       </Grid>
                     </Grid>

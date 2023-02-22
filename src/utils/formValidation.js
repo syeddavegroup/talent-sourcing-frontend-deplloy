@@ -34,13 +34,14 @@ export const developerExperienceValidation = Yup.object().shape({
   // ),
   // projects: Yup.array().of(
   //   Yup.object().shape({
-  //     title: Yup.string().required('Required'),
-  //     url: Yup.string().matches(
+  //     projectName: Yup.string().required('Required'),
+  //     projectUrl: Yup.string().matches(
   //       /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
   //       'Invalid URL'
   //     ),
-  //     description: Yup.string().required('Required'),
-  //     duration: Yup.string().required('Required'),
+  //     startDate: Yup.string(),
+  //     endDate: Yup.string(),
+  //     description: Yup.string(),
   //   })
   // ),
 });
