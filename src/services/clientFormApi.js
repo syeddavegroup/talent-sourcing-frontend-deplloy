@@ -3,7 +3,7 @@ import axios from 'axios';
 export const clientPersonalAPI = async (data) => {
   axios
     .post(
-      `http://www.localhost:3000/api/v1/client-on-boarding/personalInformation`,
+      `${process.env.REACT_APP_API_URL}/api/v1/client-on-boarding/personalInformation`,
       JSON.stringify(data),
       {
         headers: {
