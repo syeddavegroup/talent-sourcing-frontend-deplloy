@@ -79,7 +79,7 @@ export const clientPersonalValidation = Yup.object().shape({
   personalInformation: Yup.object().shape({
     fullName: Yup.string().required('Required'),
     email: Yup.string().email('Invalid Email').required('Required'),
-    mobileNumber: Yup.string()
+    contactNum: Yup.string()
       .min(10, 'must be 10 digits')
       .max(10, 'must be 10 digits')
       .required('Required'),

@@ -107,7 +107,7 @@ export default function ClientPersonalInfo() {
           image: '',
           fullName: '',
           email: '',
-          mobileNumber: '',
+          contactNum: '',
           country: '',
           state: '',
           city: '',
@@ -232,26 +232,26 @@ export default function ClientPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type='number'
-                    id='personalInformation.mobileNumber'
-                    name='personalInformation.mobileNumber'
+                    type='text'
+                    id='personalInformation.contactNum'
+                    name='personalInformation.contactNum'
                     label='Mobile'
                     placeholder='99999XXXXXXX'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.contactNum &&
                       Boolean(
                         errors.personalInformation &&
-                          errors.personalInformation.mobileNumber
+                          errors.personalInformation.contactNum
                       )
                     }
                     helperText={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.contactNum &&
                       errors.personalInformation &&
-                      errors.personalInformation.mobileNumber
+                      errors.personalInformation.contactNum
                     }
                   />
                 </Grid>
