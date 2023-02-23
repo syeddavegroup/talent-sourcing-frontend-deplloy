@@ -1,8 +1,6 @@
 import React from "react";
 
-import card1Img from "../../../../assets/Admin/card2.png";
-
-import CustomCard from "../../../UI/CustomCard";
+import StatsCard from "../../../UI/Card/StatsCard/StatsCard";
 
 import DUMMY_USERS from "../../../../data/dummyUsers";
 
@@ -11,10 +9,11 @@ const DevelopersCard = () => {
     user.role.toLowerCase().includes("developer")
   );
   return (
-    <CustomCard
-      heading="Total Developers"
-      image={card1Img}
-      quantity={developers.length}
+    <StatsCard
+      title="Total Developers"
+      count={developers.length}
+      percentage={70.3}
+      extra="10"
     />
   );
 };
