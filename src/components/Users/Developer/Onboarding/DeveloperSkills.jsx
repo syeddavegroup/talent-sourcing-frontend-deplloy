@@ -1,24 +1,24 @@
-import React from "react";
-import { FieldArray, Form, Formik } from "formik";
-import { Box, Card, TextField, Typography, Grid, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import CancelIcon from "../../../../assets/cancel-icon.svg";
+import React from 'react';
+import { FieldArray, Form, Formik } from 'formik';
+import { Box, Card, TextField, Typography, Grid, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import CancelIcon from '../../../../assets/cancel-icon.svg';
 
-import { developerSkillValidation } from "../../../../utils/formValidation";
+import { developerSkillValidation } from '../../../../utils/formValidation';
 
 export default function DeveloperSkills() {
   return (
     <Formik
       initialValues={{
         skills: {
-          skill: [""],
-          language: [""],
+          skill: [''],
+          language: [''],
         },
         socialProof: {
-          linkedIn: "",
-          twitter: "",
-          instagram: "",
-          facebook: "",
+          linkedIn: '',
+          twitter: '',
+          instagram: '',
+          facebook: '',
         },
       }}
       validationSchema={developerSkillValidation}
@@ -38,48 +38,48 @@ export default function DeveloperSkills() {
         handleSubmit,
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Card sx={{ margin: "1rem", padding: "1rem" }}>
+          <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Grid container spacing={5}>
-              <FieldArray name="skills.skill">
+              <FieldArray name='skills.skill'>
                 {({ remove, push }) => (
                   <Grid item xs={12} md={6}>
                     <Box
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        marginY: "1rem",
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginY: '1rem',
                       }}
                     >
-                      <Typography variant="h4">Skills</Typography>
+                      <Typography variant='h4'>Skills</Typography>
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
                         }}
-                        onClick={() => push("")}
+                        onClick={() => push('')}
                       >
-                        <AddIcon />{" "}
-                        <Typography color={"#03308C"}>Add</Typography>
+                        <AddIcon />{' '}
+                        <Typography color={'#03308C'}>Add</Typography>
                       </Box>
                     </Box>
                     {values.skills.skill.map((_, index) => (
                       <Box
                         key={index}
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: ".2rem",
-                          marginBottom: "1rem",
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
                         }}
                       >
                         <TextField
                           fullWidth
-                          id="skills"
-                          label="skill"
+                          id='skills'
+                          label='skill'
                           name={`skills.skill[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -97,13 +97,13 @@ export default function DeveloperSkills() {
                         />
                         {index > 0 && (
                           <Box
-                            sx={{ cursor: "pointer" }}
+                            sx={{ cursor: 'pointer' }}
                             onClick={() => remove(index)}
                           >
                             <img
                               src={CancelIcon}
-                              alt=""
-                              style={{ width: "20px" }}
+                              alt=''
+                              style={{ width: '20px' }}
                             />
                           </Box>
                         )}
@@ -112,46 +112,46 @@ export default function DeveloperSkills() {
                   </Grid>
                 )}
               </FieldArray>
-              <FieldArray name="skills.language">
+              <FieldArray name='skills.language'>
                 {({ remove, push }) => (
                   <Grid item xs={12} md={6}>
                     <Box
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        marginY: "1rem",
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginY: '1rem',
                       }}
                     >
-                      <Typography variant="h4">Language</Typography>
+                      <Typography variant='h4'>Language</Typography>
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
                         }}
-                        onClick={() => push("")}
+                        onClick={() => push('')}
                       >
                         <AddIcon />
-                        <Typography color={"#03308C"}>Add</Typography>
+                        <Typography color={'#03308C'}>Add</Typography>
                       </Box>
                     </Box>
                     {values.skills.language.map((_, index) => (
                       <Box
                         key={index}
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: ".2rem",
-                          marginBottom: "1rem",
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '.2rem',
+                          marginBottom: '1rem',
                         }}
                       >
                         <TextField
                           fullWidth
-                          id="skills"
-                          label="Language"
+                          id='skills'
+                          label='Language'
                           name={`skills.language[${index}]`}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -171,13 +171,13 @@ export default function DeveloperSkills() {
                         />
                         {index > 0 && (
                           <Box
-                            sx={{ cursor: "pointer" }}
+                            sx={{ cursor: 'pointer' }}
                             onClick={() => remove(index)}
                           >
                             <img
                               src={CancelIcon}
-                              alt=""
-                              style={{ width: "20px" }}
+                              alt=''
+                              style={{ width: '20px' }}
                             />
                           </Box>
                         )}
@@ -189,43 +189,43 @@ export default function DeveloperSkills() {
             </Grid>
             <Box
               sx={{
-                width: "100%",
-                padding: "1rem 0",
-                display: "flex",
-                alignItems: "flex-end",
-                gap: "1rem",
-                justifyContent: "flex-end",
+                width: '100%',
+                padding: '1rem 0',
+                display: 'flex',
+                alignItems: 'flex-end',
+                gap: '1rem',
+                justifyContent: 'flex-end',
               }}
             >
               <Button
-                sx={{ backgroundColor: "#03308C" }}
-                type="submit"
-                variant="contained"
+                sx={{ backgroundColor: '#03308C' }}
+                type='submit'
+                variant='contained'
               >
                 Save
               </Button>
             </Box>
           </Card>
-          <FieldArray name="socialProof">
+          <FieldArray name='socialProof'>
             {({ remove, push }) => (
-              <Card sx={{ margin: "1rem", padding: "1rem" }}>
+              <Card sx={{ margin: '1rem', padding: '1rem' }}>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginY: "1rem",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginY: '1rem',
                   }}
                 >
-                  <Typography variant="h4">Social Links</Typography>
+                  <Typography variant='h4'>Social Links</Typography>
                 </Box>
 
                 <Grid container spacing={5}>
                   <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
-                      id="linkedIn"
-                      label="LinkedIn"
+                      id='linkedIn'
+                      label='LinkedIn'
                       name={`socialProof.linkedIn`}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -248,8 +248,8 @@ export default function DeveloperSkills() {
                   <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
-                      id="twitter"
-                      label="Twitter"
+                      id='twitter'
+                      label='Twitter'
                       name={`socialProof.twitter`}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -272,8 +272,8 @@ export default function DeveloperSkills() {
                   <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
-                      id="instagram"
-                      label="Instagram"
+                      id='instagram'
+                      label='Instagram'
                       name={`socialProof.instagram`}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -296,8 +296,8 @@ export default function DeveloperSkills() {
                   <Grid item xs={12} md={6}>
                     <TextField
                       fullWidth
-                      id="facebook"
-                      label="Facebook"
+                      id='facebook'
+                      label='Facebook'
                       name={`socialProof.facebook`}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -319,17 +319,17 @@ export default function DeveloperSkills() {
                 </Grid>
                 <Box
                   sx={{
-                    padding: "1rem 0",
-                    display: "flex",
-                    alignItems: "flex-end",
-                    gap: "1rem",
-                    justifyContent: "flex-end",
+                    padding: '1rem 0',
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    gap: '1rem',
+                    justifyContent: 'flex-end',
                   }}
                 >
                   <Button
-                    sx={{ backgroundColor: "#03308C" }}
-                    type="submit"
-                    variant="contained"
+                    sx={{ backgroundColor: '#03308C' }}
+                    type='submit'
+                    variant='contained'
                   >
                     Save
                   </Button>

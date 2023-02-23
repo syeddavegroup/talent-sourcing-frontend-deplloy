@@ -3,7 +3,7 @@ import axios from 'axios';
 export const clientPersonalAPI = async (data) => {
   axios
     .post(
-      `http://localhost:3000/api/v1/client-on-boarding/personalInfo`,
+      `http://www.localhost:3000/api/v1/client-on-boarding/personalInformation`,
       JSON.stringify(data),
       {
         headers: {
@@ -13,5 +13,6 @@ export const clientPersonalAPI = async (data) => {
       }
     )
     .then((res) => res)
-    .catch((err) => console.log(err.response.data.message));
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 };

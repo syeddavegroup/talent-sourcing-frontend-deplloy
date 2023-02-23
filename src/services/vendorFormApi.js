@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const developerPersonalAPI = async (data) => {
+export const clientPersonalAPI = async (data) => {
   axios
     .post(
-      `http://www.localhost:3000/api/v1/developer-on-boarding/personalInfo`,
+      `http://www.localhost:3000/api/v1/vendor-on-boarding/personalInformation`,
       JSON.stringify(data),
       {
         headers: {
@@ -14,5 +14,5 @@ export const developerPersonalAPI = async (data) => {
     )
     .then((res) => res)
     .then((data) => console.log(data))
-    .catch((err) => console.log(err.response.data.message));
+    .catch((err) => console.log(err));
 };
