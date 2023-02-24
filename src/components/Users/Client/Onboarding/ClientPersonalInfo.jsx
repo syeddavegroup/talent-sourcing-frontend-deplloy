@@ -119,7 +119,7 @@ export default function ClientPersonalInfo() {
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.personalInformation);
         clientPersonalAPI(values.personalInformation);
       }}
     >

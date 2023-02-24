@@ -30,6 +30,8 @@ import { styled } from "@mui/material/styles";
 import { Checkbox, MenuItem } from "@mui/material";
 import { Form, Formik } from "formik";
 import { developerValidation } from "../../../../utils/formValidation";
+import { vendorPersonalAPI } from '../../../../services/vendorFormApi';
+
 
 const ImgStyled = styled("img")(({ theme }) => ({
   width: 120,
@@ -165,7 +167,9 @@ export default function VendorPersonalInfo() {
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.personalInformation);
+        vendorPersonalAPI(values.personalInformation);
+
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, setValues }) => (
