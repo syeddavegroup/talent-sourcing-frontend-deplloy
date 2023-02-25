@@ -10,10 +10,12 @@ const ClientsTable = () => {
 
   useEffect(() => {
     axios
-      .get("https://testing2-ihn1.onrender.com/users")
+      .get(
+        "https://talentsourcing-api.onrender.com/api/v1/vendor-on-boarding/personalInformation"
+      )
       .then(function (response) {
         // handle success
-        setUsers(response.data);
+        setUsers(response.data.data);
       })
       .catch(function (error) {
         // handle error
@@ -24,11 +26,7 @@ const ClientsTable = () => {
       });
   }, []);
 
-  const vendors = users.filter((user) =>
-    user.role.toLowerCase().includes("vendor")
-  );
-
-  return <CustomTable users={vendors} />;
+  return <CustomTable users={users} />;
 };
 
 export default ClientsTable;

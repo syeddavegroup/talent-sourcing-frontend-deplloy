@@ -9,16 +9,7 @@ import CustomProgress from "../Others/CustomProgress";
 const CustomTable = (props) => {
   const columns = [
     {
-      field: "id",
-      headerClassName: "super-app-theme--header",
-      flex: 1,
-      headerName: "S.NO",
-      align: "center",
-      headerAlign: "center",
-      maxWidth: 100,
-    },
-    {
-      field: "name",
+      field: "fullName",
       headerClassName: "super-app-theme--header",
       flex: 1,
       headerName: "Name",
@@ -33,36 +24,21 @@ const CustomTable = (props) => {
       sortable: false,
     },
     {
-      field: "jobTitle",
+      field: "designation",
       headerClassName: "super-app-theme--header",
       flex: 1,
-      headerName: "Job Title",
+      headerName: "Designation",
       sortable: false,
     },
+
     {
-      field: "role",
+      field: "contactNum",
       headerClassName: "super-app-theme--header",
       flex: 1,
-      headerName: "Role",
-      maxWidth: 150,
-      sortable: false,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "progress",
-      headerClassName: "super-app-theme--header",
-      flex: 1,
-      headerName: "Progress",
+      headerName: "Number",
       align: "center",
       headerAlign: "center",
       maxWidth: 150,
-      renderCell: (params) => (
-        <CustomProgress
-          value={params.row.progress}
-          color={params.row.progressColor}
-        />
-      ),
     },
     {
       field: "actions",
@@ -93,6 +69,8 @@ const CustomTable = (props) => {
         columns={columns}
         pageSize={8}
         rowsPerPageOptions={[8]}
+        getRowId={(row) => row._id}
+        loading={!props.users.length}
         experimentalFeatures={{ newEditingApi: true }}
       />
     </Box>
