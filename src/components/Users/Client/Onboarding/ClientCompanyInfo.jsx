@@ -18,6 +18,7 @@ import RegisterLogo from '../../../../assets/registerDoc-logo.svg';
 import { clientCompanyInfoValidation } from '../../../../utils/formValidation';
 
 import UploadIcon from '../../../../assets/upload-button-icon.svg';
+import { clientCompanyInfoAPI } from '../../../../services/clientFormApi';
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
@@ -42,23 +43,24 @@ export default function ClientCompanyInfo() {
         companyInformation: {
           companyName: '',
           companyEmail: '',
-          mobileNumber: '',
+          contactNum: '',
           country: '',
           state: '',
           city: '',
-          agencyLink1: '',
-          agencyLink2: '',
+          AgencyLink1: '',
+          AgencyLink2: '',
           noOfEmployees: '',
           aboutAgency: '',
         },
         gallery: [''],
       }}
-      validationSchema={clientCompanyInfoValidation}
+      // validationSchema={clientCompanyInfoValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.companyInformation);
+        clientCompanyInfoAPI(values.companyInformation);
       }}
     >
       {({
@@ -126,25 +128,25 @@ export default function ClientCompanyInfo() {
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  type='number'
+                  type='text'
                   id='mobileNumber'
                   label='Mobile Number'
-                  name={`companyInformation.companyEmail`}
+                  name={`companyInformation.contactNum`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
                     touched.companyInformation &&
-                    touched.companyInformation.mobileNumber &&
+                    touched.companyInformation.contactNum &&
                     Boolean(
                       errors.companyInformation &&
-                        errors.companyInformation.mobileNumber
+                        errors.companyInformation.contactNum
                     )
                   }
                   helperText={
                     touched.companyInformation &&
-                    touched.companyInformation.mobileNumber &&
+                    touched.companyInformation.contactNum &&
                     errors.companyInformation &&
-                    errors.companyInformation.mobileNumber
+                    errors.companyInformation.contactNum
                   }
                 />
               </Grid>
@@ -157,6 +159,7 @@ export default function ClientCompanyInfo() {
                     id='companyInformation.country'
                     name='companyInformation.country'
                     label='Country'
+                    defaultValue=''
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -186,6 +189,7 @@ export default function ClientCompanyInfo() {
                   <InputLabel id='state'>State</InputLabel>
                   <Select
                     labelId='state'
+                    defaultValue=''
                     id='companyInformation.state'
                     name='companyInformation.state'
                     label='State'
@@ -218,6 +222,7 @@ export default function ClientCompanyInfo() {
                   <InputLabel id='city'>City</InputLabel>
                   <Select
                     labelId='city'
+                    defaultValue=''
                     id='companyInformation.city'
                     name='companyInformation.city'
                     label='City'
@@ -250,22 +255,22 @@ export default function ClientCompanyInfo() {
                   fullWidth
                   id='agencyLink1'
                   label='Agency link 1'
-                  name={`companyInformation.agencyLink1`}
+                  name={`companyInformation.AgencyLink1`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
                     touched.companyInformation &&
-                    touched.companyInformation.agencyLink1 &&
+                    touched.companyInformation.AgencyLink1 &&
                     Boolean(
                       errors.companyInformation &&
-                        errors.companyInformation.agencyLink1
+                        errors.companyInformation.AgencyLink1
                     )
                   }
                   helperText={
                     touched.companyInformation &&
-                    touched.companyInformation.agencyLink1 &&
+                    touched.companyInformation.AgencyLink1 &&
                     errors.companyInformation &&
-                    errors.companyInformation.agencyLink1
+                    errors.companyInformation.AgencyLink1
                   }
                 />
               </Grid>
@@ -275,7 +280,7 @@ export default function ClientCompanyInfo() {
                   fullWidth
                   id='agencyLink2'
                   label='Agency link 2'
-                  name={`companyInformation.agencyLink2`}
+                  name={`companyInformation.AgencyLink2`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -287,6 +292,7 @@ export default function ClientCompanyInfo() {
                   <Select
                     labelId='noOfEmployee'
                     id='companyInformation.noOfEmployees'
+                    defaultValue=''
                     name='companyInformation.noOfEmployees'
                     label='Number of employees'
                     onChange={handleChange}
@@ -306,9 +312,9 @@ export default function ClientCompanyInfo() {
                       errors.companyInformation.noOfEmployees
                     }
                   >
-                    <MenuItem value={'>10'}> {'>10'} </MenuItem>
-                    <MenuItem value={'>20'}>{'>20'}</MenuItem>
-                    <MenuItem value={'>30'}>{'>30'} </MenuItem>
+                    <MenuItem value={10}> {'>10'} </MenuItem>
+                    <MenuItem value={20}>{'>20'}</MenuItem>
+                    <MenuItem value={30}>{'>30'} </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

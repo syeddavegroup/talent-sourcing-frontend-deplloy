@@ -104,14 +104,14 @@ export default function ClientPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
-          image: '',
+          file: '',
           fullName: '',
           email: '',
           contactNum: '',
           country: '',
           state: '',
           city: '',
-          designation: '',
+          headline: '',
         },
       }}
       validationSchema={clientPersonalValidation}
@@ -119,8 +119,12 @@ export default function ClientPersonalInfo() {
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values.personalInformation);
         clientPersonalAPI(values.personalInformation);
+        console.log('personID', JSON.parse(localStorage.getItem('clientInfo')));
+        console.log(
+          'personID',
+          JSON.stringify(localStorage.getItem('clientInfo'))
+        );
       }}
     >
       {({
@@ -154,7 +158,7 @@ export default function ClientPersonalInfo() {
                       <input
                         hidden
                         type='file'
-                        name='personalInformation.image'
+                        name='personalInformation.file'
                         onChange={handleChange}
                         accept='image/png, image/jpeg'
                         id='account-settings-upload-image'
@@ -362,8 +366,8 @@ export default function ClientPersonalInfo() {
                   <TextField
                     fullWidth
                     type='text'
-                    id='personalInformation.designation'
-                    name='personalInformation.designation'
+                    id='personalInformation.headline'
+                    name='personalInformation.headline'
                     onChange={handleChange}
                     label='Designation'
                     placeholder='Write about yourself'
