@@ -165,7 +165,7 @@ export default function VendorPersonalInfo() {
               src={
                 imgSrc ? imgSrc : require("../../../../assets/avatars/3.png")
               }
-              alt="Profile Pic"
+              alt="Profile Picture"
             />
             <Box>
               <ButtonStyled
