@@ -24,10 +24,10 @@ const CustomTable = (props) => {
       sortable: false,
     },
     {
-      field: "designation",
+      field: "headline",
       headerClassName: "super-app-theme--header",
       flex: 1,
-      headerName: "Designation",
+      headerName: "Headline",
       sortable: false,
     },
 
