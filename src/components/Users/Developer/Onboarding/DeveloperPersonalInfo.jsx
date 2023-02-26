@@ -1,36 +1,27 @@
-import React, { useEffect } from "react";
-import CardContent from "@mui/material/CardContent";
+import React, { useEffect } from 'react';
+import CardContent from '@mui/material/CardContent';
 
 // ** React Imports
-import { useState } from "react";
-import { Country, State, City } from "country-state-city";
+import { useState } from 'react';
+import { Country, State, City } from 'country-state-city';
 
 // ** MUI Imports
-import Box from "@mui/material/Box";
-// import Card from '@mui/material/Card';
-import Grid from "@mui/material/Grid";
-// import Link from '@mui/material/Link';
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-// import CardHeader from '@mui/material/CardHeader';
-import InputLabel from "@mui/material/InputLabel";
-// import IconButton from '@mui/material/IconButton';
-import Typography from "@mui/material/Typography";
-import FormControl from "@mui/material/FormControl";
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import FormHelperText from '@mui/material/FormHelperText';
-import { styled } from "@mui/material/styles";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
 
-// ** Icons Imports
-// import EyeOutline from 'mdi-material-ui/EyeOutline';
-// import EyeOffOutline from 'mdi-material-ui/EyeOffOutline';
-// import { border, shadows } from '@mui/system';
-import { Checkbox, MenuItem } from "@mui/material";
-import { Form, Formik } from "formik";
+import { styled } from '@mui/material/styles';
+import { Checkbox, MenuItem } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { developerPersonalInformationValidation } from '../../../../utils/formValidation';
+import { developerPersonalAPI } from '../../../../services/developerFormApi';
 
-const ImgStyled = styled("img")(({ theme }) => ({
+const ImgStyled = styled('img')(({ theme }) => ({
   width: 120,
   height: 120,
   marginRight: theme.spacing(6.25),
@@ -38,36 +29,36 @@ const ImgStyled = styled("img")(({ theme }) => ({
 }));
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    textAlign: "center",
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    textAlign: 'center',
   },
-  background: "#fff",
-  border: "1px solid #1D19E3",
-  color: "#1D19E3",
-  "&:hover": {
-    "background-color": "#1D19E3",
-    color: "#fff",
-    boxShadow: "none",
+  background: '#fff',
+  border: '1px solid #1D19E3',
+  color: '#1D19E3',
+  '&:hover': {
+    'background-color': '#1D19E3',
+    color: '#fff',
+    boxShadow: 'none',
   },
-  boxShadow: "none",
+  boxShadow: 'none',
 }));
 
 const ResetButtonStyled = styled(Button)(({ theme }) => ({
   marginLeft: theme.spacing(4.5),
-  [theme.breakpoints.down("sm")]: {
-    width: "100%",
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
     marginLeft: 0,
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: theme.spacing(4),
   },
 }));
 
 export default function DeveloperPersonalInfo() {
   // const [openAlert, setOpenAlert] = useState(true);
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState('');
   const [country, setCountry] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   const [state, setState] = useState([]);
 
@@ -91,30 +82,25 @@ export default function DeveloperPersonalInfo() {
     ...country,
   }));
 
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.id,
-  //     ...state,
-  //   }));
-
   const countryData = Country.getAllCountries().map((country) => ({
     value: country.name,
     displayValue: `${country.name} - ${country.isoCode}`,
     isoCode: country.isoCode,
   }));
+  useEffect(() => {
+    const stateData = State.getStatesOfCountry(countryData.isoCode).map(
+      (state) => ({
+        value: state.name,
+        displayValue: `${state.name} - ${state.isoCode}`,
+      })
+    );
 
-  const stateData = State.getStatesOfCountry("IN").map((state) => ({
-    value: state.name,
-    displayValue: `${state.name} - ${state.isoCode}`,
-  }));
-
+    console.log(stateData);
+  }, [countryData]);
   useEffect(() => {
     setCountry(countryData);
   }, []);
   // console.log(country);
-
-  // console.log(stateData);
 
   const updatedCities = (stateId) =>
     City.getCitiesOfState(stateId).map((city) => ({
@@ -144,22 +130,23 @@ export default function DeveloperPersonalInfo() {
     <Formik
       initialValues={{
         personalInformation: {
-          profileImage: "",
-          fullName: "",
-          email: "",
-          mobileNumber: "",
-          country: "",
-          state: "",
-          city: "",
-          headline: "",
+          image: '',
+          fullName: '',
+          email: '',
+          mobile: '',
+          country: '',
+          state: '',
+          city: '',
+          headline: '',
         },
       }}
-      // validationSchema={developerPersonalInformationValidation}
+      validationSchema={developerPersonalInformationValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.personalInformation);
+        developerPersonalAPI(values.personalInformation);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, setValues }) => (
@@ -167,41 +154,41 @@ export default function DeveloperPersonalInfo() {
           <Form>
             <Box>
               <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <ImgStyled
                     src={
                       imgSrc
                         ? imgSrc
-                        : require("../../../../assets/avatars/1.png")
+                        : require('../../../../assets/avatars/1.png')
                     }
-                    alt="Profile Pic"
+                    alt='Profile Pic'
                   />
                   <Box>
                     <ButtonStyled
-                      component="label"
-                      variant="contained"
-                      htmlFor="account-settings-upload-image"
+                      component='label'
+                      variant='contained'
+                      htmlFor='account-settings-upload-image'
                     >
                       Upload New Photo
                       <input
                         hidden
-                        type="file"
-                        name="personalInformation.profileImage"
+                        type='file'
+                        name='personalInformation.image'
                         onChange={handleChange}
-                        accept="image/png, image/jpeg"
-                        id="account-settings-upload-image"
+                        accept='image/png, image/jpeg'
+                        id='account-settings-upload-image'
                       />
                     </ButtonStyled>
                     <ResetButtonStyled
-                      color="error"
-                      variant="outlined"
+                      color='error'
+                      variant='outlined'
                       onClick={() =>
-                        setImgSrc("../../../../assets/avatars/1.png")
+                        setImgSrc('../../../../assets/avatars/1.png')
                       }
                     >
                       Reset
                     </ResetButtonStyled>
-                    <Typography variant="body2" sx={{ marginTop: 5 }}>
+                    <Typography variant='body2' sx={{ marginTop: 5 }}>
                       Allowed JPG, GIF or PNG. Max size of 800K
                     </Typography>
                   </Box>
@@ -213,12 +200,12 @@ export default function DeveloperPersonalInfo() {
               <Grid container spacing={5}>
                 <Grid item xs={12} md={6}>
                   <TextField
-                    id="personalInformation.fullName"
-                    name="personalInformation.fullName"
+                    id='personalInformation.fullName'
+                    name='personalInformation.fullName'
                     fullWidth
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    label="First Name"
+                    label='Full Name'
                     error={
                       touched.personalInformation &&
                       touched.personalInformation.fullName &&
@@ -238,10 +225,10 @@ export default function DeveloperPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type="email"
-                    label="Email"
-                    id="personalInformation.email"
-                    name="personalInformation.email"
+                    type='email'
+                    label='Email'
+                    id='personalInformation.email'
+                    name='personalInformation.email'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -264,38 +251,39 @@ export default function DeveloperPersonalInfo() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
-                    type="number"
-                    id="personalInformation.mobileNumber"
-                    name="personalInformation.mobileNumber"
-                    label="Mobile"
-                    placeholder="99999XXXXXXX"
+                    type='text'
+                    id='personalInformation.mobile'
+                    name='personalInformation.mobile'
+                    label='Mobile'
+                    placeholder='99999XXXXXXX'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.mobile &&
                       Boolean(
                         errors.personalInformation &&
-                          errors.personalInformation.mobileNumber
+                          errors.personalInformation.mobile
                       )
                     }
                     helperText={
                       touched.personalInformation &&
-                      touched.personalInformation.mobileNumber &&
+                      touched.personalInformation.mobile &&
                       errors.personalInformation &&
-                      errors.personalInformation.mobileNumber
+                      errors.personalInformation.mobile
                     }
                   />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="country">Country</InputLabel>
+                    <InputLabel id='country'>Country</InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
-                      id="personalInformation.country"
-                      name="personalInformation.country"
-                      label="Country"
+                      labelId='demo-simple-select-label'
+                      defaultValue=''
+                      id='personalInformation.country'
+                      name='personalInformation.country'
+                      label='Country'
                       // value={selectedCountry}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -315,7 +303,9 @@ export default function DeveloperPersonalInfo() {
                       }
                     >
                       {country.map((cont) => (
-                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
+                        <MenuItem key={cont.isoCode} value={cont.value}>
+                          {cont.value}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
@@ -323,12 +313,13 @@ export default function DeveloperPersonalInfo() {
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="state">State</InputLabel>
+                    <InputLabel id='state'>State</InputLabel>
                     <Select
-                      labelId="state"
-                      id="personalInformation.state"
-                      name="personalInformation.state"
-                      label="State"
+                      labelId='state'
+                      defaultValue=''
+                      id='personalInformation.state'
+                      name='personalInformation.state'
+                      label='State'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -346,21 +337,22 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.state
                       }
                     >
-                      {state.map((cont) => (
-                        <MenuItem value={cont.value}>{cont.value}</MenuItem>
-                      ))}
+                      <MenuItem value={'10'}>India</MenuItem>
+                      <MenuItem value={'20'}>Germany</MenuItem>
+                      <MenuItem value={'30'}>United State</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="city">City</InputLabel>
+                    <InputLabel id='city'>City</InputLabel>
                     <Select
-                      labelId="city"
-                      id="personalInformation.city"
-                      name="personalInformation.city"
-                      label="City"
+                      labelId='city'
+                      defaultValue=''
+                      id='personalInformation.city'
+                      name='personalInformation.city'
+                      label='City'
                       onChange={handleChange}
                       onBlur={handleBlur}
                       error={
@@ -378,9 +370,9 @@ export default function DeveloperPersonalInfo() {
                         errors.personalInformation.city
                       }
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Germany</MenuItem>
-                      <MenuItem value={30}>United State</MenuItem>
+                      <MenuItem value={'10'}>India</MenuItem>
+                      <MenuItem value={'20'}>Germany</MenuItem>
+                      <MenuItem value={'30'}>United State</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -388,11 +380,12 @@ export default function DeveloperPersonalInfo() {
                 <Grid item xs={12} md={12}>
                   <TextField
                     fullWidth
-                    type="text"
-                    id="personalInformation.headline"
-                    name="personalInformation.headline"
-                    label="Headline"
-                    placeholder="Write about yourself"
+                    type='text'
+                    id='personalInformation.headline'
+                    name='personalInformation.headline'
+                    onChange={handleChange}
+                    label='Headline'
+                    placeholder='Write about yourself'
                   />
                 </Grid>
               </Grid>
@@ -400,17 +393,17 @@ export default function DeveloperPersonalInfo() {
             <Grid item xs={12} md={12} mt={5}>
               <Box
                 sx={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "center",
-                  justifyContent: "right",
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  justifyContent: 'right',
                 }}
               >
                 <Button
-                  style={{ backgroundColor: "#03308C" }}
-                  type="submit"
-                  variant="contained"
-                  size="large"
+                  style={{ backgroundColor: '#03308C' }}
+                  type='submit'
+                  variant='contained'
+                  size='large'
                 >
                   Save Changes
                 </Button>

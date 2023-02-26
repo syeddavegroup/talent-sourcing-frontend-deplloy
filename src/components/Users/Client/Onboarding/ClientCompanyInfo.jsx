@@ -1,5 +1,5 @@
-import React from "react";
-import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
+import React from 'react';
+import { Form, Formik } from 'formik';
 import {
   Box,
   Card,
@@ -11,28 +11,29 @@ import {
   FormControl,
   Select,
   MenuItem,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import UploadLogo from "../../../../assets/upload-logo.svg";
-import RegisterLogo from "../../../../assets/registerDoc-logo.svg";
-import { clientCompanyInfoValidation } from "../../../../utils/formValidation";
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import UploadLogo from '../../../../assets/upload-logo.svg';
+import RegisterLogo from '../../../../assets/registerDoc-logo.svg';
+import { clientCompanyInfoValidation } from '../../../../utils/formValidation';
 
-import AddIcon from "@mui/icons-material/Add";
+import UploadIcon from '../../../../assets/upload-button-icon.svg';
+import { clientCompanyInfoAPI } from '../../../../services/clientFormApi';
 
 const ButtonStyled = styled(Button)(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    textAlign: "center",
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    textAlign: 'center',
   },
-  background: "#03308C",
-  border: "1px solid #1D19E3",
-  color: "#fff",
-  "&:hover": {
-    "background-color": "#1D19E3",
-    color: "#fff",
-    boxShadow: "none",
+  background: '#03308C',
+  border: '1px solid #1D19E3',
+  color: '#fff',
+  '&:hover': {
+    'background-color': '#1D19E3',
+    color: '#fff',
+    boxShadow: 'none',
   },
-  boxShadow: "none",
+  boxShadow: 'none',
 }));
 
 export default function ClientCompanyInfo() {
@@ -40,25 +41,26 @@ export default function ClientCompanyInfo() {
     <Formik
       initialValues={{
         companyInformation: {
-          companyName: "",
-          companyEmail: "",
-          mobileNumber: "",
-          country: "",
-          state: "",
-          city: "",
-          agencyLink1: "",
-          agencyLink2: "",
-          noOfEmployees: "",
-          aboutAgency: "",
+          companyName: '',
+          companyEmail: '',
+          contactNum: '',
+          country: '',
+          state: '',
+          city: '',
+          AgencyLink1: '',
+          AgencyLink2: '',
+          noOfEmployees: '',
+          aboutAgency: '',
         },
-        gallery: [""],
+        gallery: [''],
       }}
-      validationSchema={clientCompanyInfoValidation}
+      // validationSchema={clientCompanyInfoValidation}
       validateOnChange={true}
       validateOnBlur={true}
       onSubmit={(values) => {
         // same shape as initial values
-        console.log(values);
+        console.log(values.companyInformation);
+        clientCompanyInfoAPI(values.companyInformation);
       }}
     >
       {({
@@ -71,13 +73,13 @@ export default function ClientCompanyInfo() {
         handleReset,
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Card sx={{ margin: "1rem", padding: "1rem" }}>
+          <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Grid container spacing={5}>
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  id="companyName"
-                  label="Company Name"
+                  id='companyName'
+                  label='Company Name'
                   name={`companyInformation.companyName`}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -101,8 +103,8 @@ export default function ClientCompanyInfo() {
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  id="companyEmail"
-                  label="Company Email"
+                  id='companyEmail'
+                  label='Company Email'
                   name={`companyInformation.companyEmail`}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -126,37 +128,38 @@ export default function ClientCompanyInfo() {
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  type="number"
-                  id="mobileNumber"
-                  label="Mobile Number"
-                  name={`companyInformation.companyEmail`}
+                  type='text'
+                  id='mobileNumber'
+                  label='Mobile Number'
+                  name={`companyInformation.contactNum`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
                     touched.companyInformation &&
-                    touched.companyInformation.mobileNumber &&
+                    touched.companyInformation.contactNum &&
                     Boolean(
                       errors.companyInformation &&
-                        errors.companyInformation.mobileNumber
+                        errors.companyInformation.contactNum
                     )
                   }
                   helperText={
                     touched.companyInformation &&
-                    touched.companyInformation.mobileNumber &&
+                    touched.companyInformation.contactNum &&
                     errors.companyInformation &&
-                    errors.companyInformation.mobileNumber
+                    errors.companyInformation.contactNum
                   }
                 />
               </Grid>
 
               <Grid item xs={12} md={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="country">Country</InputLabel>
+                  <InputLabel id='country'>Country</InputLabel>
                   <Select
-                    labelId="country"
-                    id="companyInformation.country"
-                    name="companyInformation.country"
-                    label="Country"
+                    labelId='country'
+                    id='companyInformation.country'
+                    name='companyInformation.country'
+                    label='Country'
+                    defaultValue=''
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -183,12 +186,13 @@ export default function ClientCompanyInfo() {
 
               <Grid item xs={12} md={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="state">State</InputLabel>
+                  <InputLabel id='state'>State</InputLabel>
                   <Select
-                    labelId="state"
-                    id="companyInformation.state"
-                    name="companyInformation.state"
-                    label="State"
+                    labelId='state'
+                    defaultValue=''
+                    id='companyInformation.state'
+                    name='companyInformation.state'
+                    label='State'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -215,12 +219,13 @@ export default function ClientCompanyInfo() {
 
               <Grid item xs={12} md={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="city">City</InputLabel>
+                  <InputLabel id='city'>City</InputLabel>
                   <Select
-                    labelId="city"
-                    id="companyInformation.city"
-                    name="companyInformation.city"
-                    label="City"
+                    labelId='city'
+                    defaultValue=''
+                    id='companyInformation.city'
+                    name='companyInformation.city'
+                    label='City'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -248,24 +253,24 @@ export default function ClientCompanyInfo() {
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  id="agencyLink1"
-                  label="Agency link 1"
-                  name={`companyInformation.agencyLink1`}
+                  id='agencyLink1'
+                  label='Agency link 1'
+                  name={`companyInformation.AgencyLink1`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={
                     touched.companyInformation &&
-                    touched.companyInformation.agencyLink1 &&
+                    touched.companyInformation.AgencyLink1 &&
                     Boolean(
                       errors.companyInformation &&
-                        errors.companyInformation.agencyLink1
+                        errors.companyInformation.AgencyLink1
                     )
                   }
                   helperText={
                     touched.companyInformation &&
-                    touched.companyInformation.agencyLink1 &&
+                    touched.companyInformation.AgencyLink1 &&
                     errors.companyInformation &&
-                    errors.companyInformation.agencyLink1
+                    errors.companyInformation.AgencyLink1
                   }
                 />
               </Grid>
@@ -273,9 +278,9 @@ export default function ClientCompanyInfo() {
               <Grid item xs={12} md={6}>
                 <TextField
                   fullWidth
-                  id="agencyLink2"
-                  label="Agency link 2"
-                  name={`companyInformation.agencyLink2`}
+                  id='agencyLink2'
+                  label='Agency link 2'
+                  name={`companyInformation.AgencyLink2`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -283,12 +288,13 @@ export default function ClientCompanyInfo() {
 
               <Grid item xs={12} md={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="city">Number of employees</InputLabel>
+                  <InputLabel id='city'>Number of employees</InputLabel>
                   <Select
-                    labelId="noOfEmployee"
-                    id="companyInformation.noOfEmployees"
-                    name="companyInformation.noOfEmployees"
-                    label="Number of employees"
+                    labelId='noOfEmployee'
+                    id='companyInformation.noOfEmployees'
+                    defaultValue=''
+                    name='companyInformation.noOfEmployees'
+                    label='Number of employees'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={
@@ -306,26 +312,26 @@ export default function ClientCompanyInfo() {
                       errors.companyInformation.noOfEmployees
                     }
                   >
-                    <MenuItem value={">10"}> {">10"} </MenuItem>
-                    <MenuItem value={">20"}>{">20"}</MenuItem>
-                    <MenuItem value={">30"}>{">30"} </MenuItem>
+                    <MenuItem value={10}> {'>10'} </MenuItem>
+                    <MenuItem value={20}>{'>20'}</MenuItem>
+                    <MenuItem value={30}>{'>30'} </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
             </Grid>
             <Box
               sx={{
-                padding: "1rem 0",
-                display: "flex",
-                alignItems: "flex-end",
-                gap: "1rem",
-                justifyContent: "flex-end",
+                padding: '1rem 0',
+                display: 'flex',
+                alignItems: 'flex-end',
+                gap: '1rem',
+                justifyContent: 'flex-end',
               }}
             >
               <Button
-                sx={{ backgroundColor: "#03308C" }}
-                type="submit"
-                variant="contained"
+                sx={{ backgroundColor: '#03308C' }}
+                type='submit'
+                variant='contained'
               >
                 Save
               </Button>
@@ -335,55 +341,119 @@ export default function ClientCompanyInfo() {
             </Box>
           </Card>
 
-          <Card sx={{ margin: "1rem", padding: "1rem" }}>
+          <Card sx={{ margin: '1rem', padding: '1rem' }}>
             <Box
               sx={{
-                display: "flex",
-                gap: ".5rem",
-                alignItems: "center",
+                display: 'flex',
+                gap: '.5rem',
+                alignItems: 'center',
               }}
             >
-              <img src={RegisterLogo} alt="" />
-              <Typography variant="subtitle1" color={"#79767E"}>
+              <img src={RegisterLogo} alt='' />
+              <Typography variant='subtitle1' color={'#79767E'}>
                 Registration Document
               </Typography>
             </Box>
-            <Typography padding={"1rem 0"}>Select Files</Typography>
-            <Grid container gap={5} width={"100%"}>
-              <Grid item width={"100%"}>
+            <Typography padding={'1rem 0'}>Select Files</Typography>
+            <Grid container gap={5} width={'100%'}>
+              <Grid item width={'100%'}>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    overflow: "hidden",
-                    gap: "0.5rem",
-                    border: "3px dashed #8A8D93",
-                    borderSpacing: "5px",
-                    padding: "1.5rem 0",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    overflow: 'hidden',
+                    gap: '0.5rem',
+                    border: '3px dashed #8A8D93',
+                    borderSpacing: '5px',
+                    padding: '1.5rem 0',
                   }}
                 >
-                  <img src={UploadLogo} alt="" />
+                  <img src={UploadLogo} alt='' />
                   <ButtonStyled
-                    component="label"
-                    variant="contained"
-                    htmlFor="account-settings-upload-image"
+                    component='label'
+                    variant='contained'
+                    htmlFor='account-settings-upload-image'
                   >
                     CHOOSE FILES
                     <input
                       hidden
-                      type="file"
-                      name="gallery"
+                      type='file'
+                      name='gallery'
                       // onChange={onChange}
-                      accept="image/png, image/jpeg"
-                      id="account-settings-upload-image"
+                      accept='image/png, image/jpeg'
+                      id='account-settings-upload-image'
                     />
                   </ButtonStyled>
                 </Box>
               </Grid>
             </Grid>
+
+            <Grid>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                  margin: '1rem 0',
+                }}
+              >
+                <Box>Document Type</Box>
+                <Box sx={{ color: '#79767E' }}>Registration Document</Box>
+              </Box>
+              <Typography>Description</Typography>
+              <TextField
+                fullWidth
+                id='companyName'
+                multiline
+                rows={10}
+                name={`companyInformation.aboutAgency`}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={
+                  touched.companyInformation &&
+                  touched.companyInformation.aboutAgency &&
+                  Boolean(
+                    errors.companyInformation &&
+                      errors.companyInformation.aboutAgency
+                  )
+                }
+                helperText={
+                  touched.companyInformation &&
+                  touched.companyInformation.aboutAgency &&
+                  errors.companyInformation &&
+                  errors.companyInformation.aboutAgency
+                }
+              />
+            </Grid>
+            <Box
+              sx={{
+                padding: '1rem 0',
+                display: 'flex',
+                alignItems: 'flex-end',
+                gap: '1rem',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <Button
+                sx={{
+                  backgroundColor: '#03308C',
+                  textTransform: 'capitalize',
+                  display: 'flex',
+                  gap: '1rem',
+                }}
+                type='submit'
+                variant='contained'
+              >
+                <img src={UploadIcon} alt='' />
+                upload
+              </Button>
+              {/* <Button color='error' variant='outlined' >
+                Cancel
+              </Button> */}
+            </Box>
           </Card>
         </Form>
       )}
