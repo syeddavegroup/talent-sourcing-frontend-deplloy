@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CardContent from "@mui/material/CardContent";
 
 import axios from "axios";
 
@@ -12,6 +11,8 @@ import {
   styled,
   MenuItem,
   CircularProgress,
+  Card,
+  CardContent,
 } from "@mui/material";
 
 const ImgStyled = styled("img")(({ theme }) => ({
@@ -60,6 +61,7 @@ export default function VendorPersonalInfo() {
   const [world, setWorld] = useState([]);
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
 
@@ -68,14 +70,8 @@ export default function VendorPersonalInfo() {
       .get(
         "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
       )
-      .then(function (response) {
-        // handle success
-        setWorld(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
+      .then((res) => setWorld(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   let countries = [...new Set(world.map((item) => item.country))];
@@ -139,13 +135,15 @@ export default function VendorPersonalInfo() {
     if (validateForm()) {
       setLoading(true);
       setServerError("");
+      setMessage("");
       axios
         .post(
           "https://talentsourcing-api.onrender.com/api/v1/vendor-on-boarding/personalInformation",
-          values
+          { ...values, profileImage: imgSrc }
         )
         .then(function (response) {
-          console.log(response);
+          localStorage.setItem("userId", response.data.data._id);
+          setMessage(response.data.message);
         })
         .catch(function (error) {
           setServerError(error.response.data.message);
@@ -158,7 +156,7 @@ export default function VendorPersonalInfo() {
 
   return (
     <CardContent>
-      <Box>
+      <Card sx={{ margin: "auto", padding: "1rem", width: "100%" }}>
         <Grid item xs={12} sx={{ marginTop: 4.8, marginBottom: 3 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <ImgStyled
@@ -195,7 +193,6 @@ export default function VendorPersonalInfo() {
             </Box>
           </Box>
         </Grid>
-
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <TextField
@@ -306,34 +303,37 @@ export default function VendorPersonalInfo() {
             />
           </Grid>
         </Grid>
-      </Box>
-      <Typography textAlign="center" color="error" my={3}>
-        {serverError}
-      </Typography>
-      <Grid item xs={12} md={12} mt={5}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "right",
-          }}
-        >
-          <Button
-            style={{ backgroundColor: "#03308C" }}
-            type="submit"
-            variant="contained"
-            size="large"
-            onClick={handleSubmit}
+        <Typography textAlign="center" color="error" my={3}>
+          {serverError}
+        </Typography>
+        <Typography textAlign="center" color="green" my={3}>
+          {message}
+        </Typography>
+        <Grid item xs={12} md={12} mt={5}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "right",
+            }}
           >
-            {loading ? (
-              <CircularProgress color="inherit" size={30} />
-            ) : (
-              "Save Changes"
-            )}
-          </Button>
-        </Box>
-      </Grid>
+            <Button
+              style={{ backgroundColor: "#03308C" }}
+              type="submit"
+              variant="contained"
+              size="large"
+              onClick={handleSubmit}
+            >
+              {loading ? (
+                <CircularProgress color="inherit" size={30} />
+              ) : (
+                "Save Changes"
+              )}
+            </Button>
+          </Box>
+        </Grid>
+      </Card>
     </CardContent>
   );
 }

@@ -26,7 +26,11 @@ const ClientsTable = () => {
       });
   }, []);
 
-  return <CustomTable users={users} />;
+  return (
+    <>
+      <CustomTable users={users} />
+    </>
+  );
 };
 
 export default ClientsTable;

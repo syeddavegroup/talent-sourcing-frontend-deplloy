@@ -19,6 +19,8 @@ import MuiTab from "@mui/material/Tab";
 import "react-datepicker/dist/react-datepicker.css";
 import VendorPersonalInfo from "./VendorPersonalInfo";
 import VendorCompanyInfo from "./VendorCompanyInfo";
+import VendorOverview from "./VendorOverview";
+
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     minWidth: 100,
@@ -39,7 +41,7 @@ const TabName = styled("span")(({ theme }) => ({
 
 const OnboardingPage = () => {
   // ** State
-  const [value, setValue] = useState("personalInformation");
+  const [value, setValue] = useState("Personal Info");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -54,10 +56,10 @@ const OnboardingPage = () => {
           sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
           <Tab
-            value="personalInformation"
+            value="Personal Info"
             label={
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <TabName>Personal Information</TabName>
+                <TabName>Personal Info</TabName>
               </Box>
             }
           />
@@ -65,40 +67,29 @@ const OnboardingPage = () => {
             value="Company Info"
             label={
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <TabName>Comapny Info</TabName>
-              </Box>
-            }
-          />
-          {/* <Tab
-            value='skills'
-            label={
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Skills</TabName>
+                <TabName>Company Info</TabName>
               </Box>
             }
           />
           <Tab
-            value='bankDetails'
+            value="Overview"
             label={
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TabName>Bank Details</TabName>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <TabName>Overview</TabName>
               </Box>
-              />
-            }*/}
+            }
+          />
         </TabList>
 
-        <TabPanel sx={{ p: 0 }} value="personalInformation">
+        <TabPanel sx={{ p: 0 }} value="Personal Info">
           <VendorPersonalInfo />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="Company Info">
           <VendorCompanyInfo />
         </TabPanel>
-        {/*<TabPanel sx={{ p: 0 }} value='skills'>
-          <DeveloperSkills />
+        <TabPanel sx={{ p: 0 }} value="Overview">
+          <VendorOverview />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value='bankDetails'>
-          <DeveloperBankDetails />
-          </TabPanel>*/}
       </TabContext>
     </Card>
   );
